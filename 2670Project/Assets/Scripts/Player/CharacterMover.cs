@@ -95,24 +95,24 @@ public class CharacterMover : MonoBehaviour
             movement.z = Input.GetAxis("Vertical") * moveSpeed;
         }
         
-        // if (movement.x > 0)
-        // {
-        //     rotateAngle = Mathf.Lerp(rotateAngle, 90, (rotateSpeed * Time.deltaTime));
-        // }
-        // if (movement.x < 0)
-        // {
-        //     rotateAngle = Mathf.Lerp(rotateAngle, -90, (rotateSpeed * Time.deltaTime));
-        // }
-        // if (movement.z > 0)
-        // {
-        //      rotateAngle = Mathf.Lerp(rotateAngle, 0, (rotateSpeed * Time.deltaTime));
-        // }
-        //  if (movement.z < 0)
-        // {
-        //      rotateAngle = Mathf.Lerp(rotateAngle, 180, (rotateSpeed * Time.deltaTime));
-        // }
+        if (movement.x > 0)
+        {
+            rotateAngle = Mathf.LerpAngle(rotateAngle, 90, (rotateSpeed * Time.deltaTime));
+        }
+        if (movement.x < 0)
+        {
+            rotateAngle = Mathf.LerpAngle(rotateAngle, -90, (rotateSpeed * Time.deltaTime));
+        }
+        if (movement.z > 0)
+        {
+             rotateAngle = Mathf.LerpAngle(rotateAngle, 0, (rotateSpeed * Time.deltaTime));
+        }
+         if (movement.z < 0)
+        {
+             rotateAngle = Mathf.LerpAngle(rotateAngle, 180, (rotateSpeed * Time.deltaTime));
+        }
         
-        // transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, rotateAngle, 0));
+        transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, rotateAngle, 0));
         movement = transform.TransformDirection(movement);
         controller.Move(movement*Time.deltaTime);
     }
