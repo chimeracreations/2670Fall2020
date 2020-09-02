@@ -20,39 +20,43 @@ public class CharacterMover : MonoBehaviour
     public bool canJump = true;
     public float dashCooldown = 0.3f;
     public float dashRest = 0.8f;
-    private float dashCount;
-    private float dashRestCount;
+    private float dashCount = 0f;
+    private float dashRestCount = 0f;
     private bool canDash = true;
 
     
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        dashCount = 0;
-        dashRestCount = 0;
     }
     
     void Update()
-    {  
+    {   
+        //Constant increasing downward movement for gravity  
         movement.y -= gravity;
 
+        //Keep downward movement from going out of control by reseting gravity but with extra umph to keep grounded. Reset jump count when hits the ground 
         if (controller.isGrounded)
         {
             movement.y = -gravity * 3;
             jumpCount = 0;
         }
 
+        //Jump up as many times as jumpCount is set to
         if (Input.GetButtonDown("Jump") && (jumpCount < maxJumpCount) && canJump)
         {
             movement.y = jumpForce;
             jumpCount++;
         }
        
+        //MOVEMENT
+        //If canDash is true and Fire2 is pressed, sets dashCount to a positive number to allow the next if statement to trigger
         if (Input.GetButtonDown("Fire2") && canDash) 
         {
             dashCount = dashCount + 1 * Time.deltaTime;
         }
 
+        //Moves the character at dash speed for a set time. dashCooldown is not 1 value equals 1 second but should run off real time
         else if (dashCount > 0 && dashCount < dashCooldown)
         {
             movement.x = Input.GetAxis("Horizontal") * dashMoveSpeed;
@@ -60,6 +64,7 @@ public class CharacterMover : MonoBehaviour
             dashCount = dashCount + 1 * Time.deltaTime;
         }
 
+        //Resets dashCount and canDash once dashcount reaches the dashCooldown
         else if (dashCount >= dashCooldown)
         {
             dashCount = 0;

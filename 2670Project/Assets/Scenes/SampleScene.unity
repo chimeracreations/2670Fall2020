@@ -175,7 +175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fb810163154c4db40a2e8f7199cb7d6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -503,14 +503,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78902df3f514bb64782ea5128c8c2dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 0.11
+  gravity: 0.13
   moveSpeed: 4
-  fastMoveSpeed: 0
-  jumpForce: 10
+  fastMoveSpeed: 6
+  dashMoveSpeed: 12
+  recoveryMoveSpeed: 2.5
+  jumpForce: 12
   maxJumpCount: 2
-  jumpCountMax: 0
   rotateSpeed: 3
-  testGrounded: 0
+  canJump: 1
+  dashCooldown: 0.3
+  dashRest: 0.8
 --- !u!143 &1954725491
 CharacterController:
   m_ObjectHideFlags: 0
