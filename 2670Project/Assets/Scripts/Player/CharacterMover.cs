@@ -7,7 +7,7 @@ public class CharacterMover : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 movement;
-    public float gravity = 0.13f;
+    public float gravity = 25f;
     public float moveSpeed = 4f;
     public float fastMoveSpeed = 6f;
     public float dashMoveSpeed = 12f;
@@ -16,7 +16,7 @@ public class CharacterMover : MonoBehaviour
     private int jumpCount = 0;
     public int maxJumpCount = 2;
     private float rotateAngle;
-    public float rotateSpeed = 3f;
+    public float rotateSpeed = 2.8f;
     public bool canJump = true;
     public float dashCooldown = 0.3f;
     public float dashRest = 0.8f;
@@ -33,7 +33,7 @@ public class CharacterMover : MonoBehaviour
     void Update()
     {   
         //Constant increasing downward movement for gravity  
-        movement.y -= gravity;
+        movement.y -= gravity * Time.deltaTime;
 
         //Keep downward movement from going out of control by reseting gravity but with extra umph to keep grounded. Reset jump count when hits the ground 
         if (controller.isGrounded)
@@ -95,24 +95,43 @@ public class CharacterMover : MonoBehaviour
             movement.z = Input.GetAxis("Vertical") * moveSpeed;
         }
         
-        if (movement.x > 0)
+
+        if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") > 0)
+        {
+            rotateAngle = Mathf.LerpAngle(rotateAngle, 45, (rotateSpeed * Time.deltaTime));
+        }
+        if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") > 0)
+        {
+            rotateAngle = Mathf.LerpAngle(rotateAngle, -45, (rotateSpeed * Time.deltaTime));
+        }
+        if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") < 0)
+        {
+             rotateAngle = Mathf.LerpAngle(rotateAngle, 135, (rotateSpeed * Time.deltaTime));
+        }
+        if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") < 0)
+        {
+             rotateAngle = Mathf.LerpAngle(rotateAngle, -135, (rotateSpeed * Time.deltaTime));
+        }
+        if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") == 0)
         {
             rotateAngle = Mathf.LerpAngle(rotateAngle, 90, (rotateSpeed * Time.deltaTime));
         }
-        if (movement.x < 0)
+        if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") == 0)
         {
             rotateAngle = Mathf.LerpAngle(rotateAngle, -90, (rotateSpeed * Time.deltaTime));
         }
-        if (movement.z > 0)
+        if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") == 0)
         {
              rotateAngle = Mathf.LerpAngle(rotateAngle, 0, (rotateSpeed * Time.deltaTime));
         }
-         if (movement.z < 0)
+        if (Input.GetAxis("Vertical") < 0 && Input.GetAxis("Horizontal") == 0)
         {
              rotateAngle = Mathf.LerpAngle(rotateAngle, 180, (rotateSpeed * Time.deltaTime));
         }
         
+
         transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, rotateAngle, 0));
+        
         movement = transform.TransformDirection(movement);
         controller.Move(movement*Time.deltaTime);
     }
