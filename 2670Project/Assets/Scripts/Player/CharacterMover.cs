@@ -40,7 +40,7 @@ public class CharacterMover : MonoBehaviour
         //Keep downward movement from going out of control by reseting gravity but with extra umph to keep grounded. Reset jump count when hits the ground 
         if (controller.isGrounded)
         {
-            movement.y = -gravity * 3;
+            movement.y = -3;
             jumpCount = 0;
         }
 
