@@ -17,8 +17,6 @@ public class CharacterMover : MonoBehaviour
     public int maxJumpCount = 2;
     private float rotateAngle;
     public float rotateSpeed = 2.8f;
-    public float tailRotateSpeed = 8f;
-    private Vector3 tailPosition;
     public bool canJump = true;
     public float dashCooldown = 0.3f;
     public float dashRest = 0.8f;
