@@ -1122,7 +1122,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1954725485}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
@@ -1161,7 +1161,8 @@ MonoBehaviour:
   recoveryMoveSpeed: 2.5
   jumpForce: 12
   maxJumpCount: 2
-  rotateSpeed: 6
+  deltaAngle: 0
+  rotateSpeed: 5.5
   canJump: 1
   dashCooldown: 0.3
   dashRest: 0.8
@@ -1193,7 +1194,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2095812521}
   - component: {fileID: 2095812522}
-  - component: {fileID: 2095812525}
   - component: {fileID: 2095812524}
   - component: {fileID: 2095812523}
   m_Layer: 0
@@ -1286,15 +1286,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095812520}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2095812525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095812520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ba851e14f10cd147b4608a435a95d71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

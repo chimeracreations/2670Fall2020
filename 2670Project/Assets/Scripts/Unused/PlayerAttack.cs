@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private Animator animator;
+    private float angle;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +16,8 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        angle = gameObject.GetComponentInParent<CharacterMover>().deltaAngle;
+        if (Input.GetButtonDown("Fire1") && angle < 0)
         {
             animator.SetTrigger("playerAttack");
         }

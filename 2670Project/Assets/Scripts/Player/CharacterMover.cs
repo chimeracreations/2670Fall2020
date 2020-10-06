@@ -16,6 +16,7 @@ public class CharacterMover : MonoBehaviour
     private int jumpCount = 0;
     public int maxJumpCount = 2;
     private float rotateAngle;
+    public float deltaAngle;
     public float rotateSpeed = 2.8f;
     public bool canJump = true;
     public float dashCooldown = 0.3f;
@@ -23,11 +24,13 @@ public class CharacterMover : MonoBehaviour
     private float dashCount = 0f;
     private float dashRestCount = 0f;
     private bool canDash = true;
+    private Animator animator;
 
     
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
     
     void Update()
@@ -41,6 +44,10 @@ public class CharacterMover : MonoBehaviour
             movement.y = -3;
             jumpCount = 0;
         }
+
+        //incase you fall from a cliff without jumping first
+        else if (controller.isGrounded == false && jumpCount < 1)
+            jumpCount++;
 
         //Jump up as many times as jumpCount is set to
         if (Input.GetButtonDown("Jump") && (jumpCount < maxJumpCount) && canJump)
@@ -95,6 +102,7 @@ public class CharacterMover : MonoBehaviour
             movement.z = Input.GetAxis("Vertical") * moveSpeed;
         }
         
+        float angleOne = rotateAngle;
 
         if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") > 0)
         {
@@ -129,10 +137,25 @@ public class CharacterMover : MonoBehaviour
              rotateAngle = Mathf.LerpAngle(rotateAngle, 180, (rotateSpeed * Time.deltaTime));
         }
         
+        //Get the deltaAngle by subracting the before and after rotateAngle
+        float angleTwo = rotateAngle;
+        deltaAngle = angleOne - angleTwo;
 
+        //Attack animation
+        if (Input.GetButtonDown("Fire1") && deltaAngle <= 0)
+        {
+            animator.SetTrigger("playerAttackR");
+        }
+        else if (Input.GetButtonDown("Fire1") && deltaAngle > 0)
+        {
+            animator.SetTrigger("playerAttackL");
+        }
      
 
-        transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, rotateAngle, 0)); 
+        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("playerIdle"))
+        //{
+            transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, rotateAngle, 0)); 
+       // }
         movement = transform.TransformDirection(movement);
         controller.Move(movement*Time.deltaTime);
     }
