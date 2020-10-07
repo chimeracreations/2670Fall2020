@@ -1161,11 +1161,11 @@ MonoBehaviour:
   recoveryMoveSpeed: 2.5
   jumpForce: 12
   maxJumpCount: 2
-  deltaAngle: 0
-  rotateSpeed: 5.5
+  rotateSpeed: 6.5
   canJump: 1
   dashCooldown: 0.3
   dashRest: 0.8
+  attackPause: 1.15
 --- !u!143 &1954725491
 CharacterController:
   m_ObjectHideFlags: 0

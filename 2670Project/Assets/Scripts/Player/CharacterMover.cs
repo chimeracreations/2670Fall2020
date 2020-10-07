@@ -8,36 +8,40 @@ public class CharacterMover : MonoBehaviour
     private CharacterController controller;
     private Vector3 movement;
     public float gravity = 25f;
+    public float jumpForce = 12f;
+    private int jumpCount = 0;
+    public int maxJumpCount = 2;
+    public bool canJump = true;
     public float moveSpeed = 4f;
     public float fastMoveSpeed = 6f;
     public float dashMoveSpeed = 12f;
     public float recoveryMoveSpeed = 2.5f;
-    public float jumpForce = 12f;
-    private int jumpCount = 0;
-    public int maxJumpCount = 2;
     private float rotateAngle;
-    public float deltaAngle;
+    private float deltaAngle;
     public float rotateSpeed = 2.8f;
-    public bool canJump = true;
     public float dashCooldown = 0.3f;
     public float dashRest = 0.8f;
     private float dashCount = 0f;
     private float dashRestCount = 0f;
     private bool canDash = true;
     private Animator animator;
+    public float attackPause = 2f;
+    private float attackPauseCount;
 
     
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        attackPauseCount = attackPause;
     }
     
     void Update()
     {   
         //Constant increasing downward movement for gravity  
         movement.y -= gravity * Time.deltaTime;
-
+        
+        //JUMP
         //Keep downward movement from going out of control by reseting gravity but with extra umph to keep grounded. Reset jump count when hits the ground 
         if (controller.isGrounded)
         {
@@ -89,75 +93,83 @@ public class CharacterMover : MonoBehaviour
                 dashRestCount = 0;
             }
         }
-
+        //Fast movement
         else if (Input.GetButton("Fire3") && canDash)
         {
             movement.x = Input.GetAxis("Horizontal") * fastMoveSpeed;
             movement.z = Input.GetAxis("Vertical") * fastMoveSpeed;
         }
-
+        //Regular movement
         else if (canDash)
         {
             movement.x = Input.GetAxis("Horizontal") * moveSpeed;
             movement.z = Input.GetAxis("Vertical") * moveSpeed;
         }
-        
-        float angleOne = rotateAngle;
 
-        if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") > 0)
-        {
-            rotateAngle = Mathf.LerpAngle(rotateAngle, 45, (rotateSpeed * Time.deltaTime));
-        }
-        if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") > 0)
-        {
-            rotateAngle = Mathf.LerpAngle(rotateAngle, -45, (rotateSpeed * Time.deltaTime));
-        }
-        if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") < 0)
-        {
-             rotateAngle = Mathf.LerpAngle(rotateAngle, 135, (rotateSpeed * Time.deltaTime));
-        }
-        if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") < 0)
-        {
-             rotateAngle = Mathf.LerpAngle(rotateAngle, -135, (rotateSpeed * Time.deltaTime));
-        }
-        if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") == 0)
-        {
-            rotateAngle = Mathf.LerpAngle(rotateAngle, 90, (rotateSpeed * Time.deltaTime));
-        }
-        if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") == 0)
-        {
-            rotateAngle = Mathf.LerpAngle(rotateAngle, -90, (rotateSpeed * Time.deltaTime));
-        }
-        if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") == 0)
-        {
-             rotateAngle = Mathf.LerpAngle(rotateAngle, 0, (rotateSpeed * Time.deltaTime));
-        }
-        if (Input.GetAxis("Vertical") < 0 && Input.GetAxis("Horizontal") == 0)
-        {
-             rotateAngle = Mathf.LerpAngle(rotateAngle, 180, (rotateSpeed * Time.deltaTime));
-        }
-        
-        //Get the deltaAngle by subracting the before and after rotateAngle
-        float angleTwo = rotateAngle;
-        deltaAngle = angleOne - angleTwo;
+        //ROTATE
+        //Attack animation freezes rotation until idle animation resumes
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("playerIdle"))
+        {    
+            float angleOne = rotateAngle;
+            //Player rotation based off input
+            if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") > 0)
+            {
+                rotateAngle = Mathf.LerpAngle(rotateAngle, 45, (rotateSpeed * Time.deltaTime));
+            }
+            if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") > 0)
+            {
+                rotateAngle = Mathf.LerpAngle(rotateAngle, -45, (rotateSpeed * Time.deltaTime));
+            }
+            if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") < 0)
+            {
+                rotateAngle = Mathf.LerpAngle(rotateAngle, 135, (rotateSpeed * Time.deltaTime));
+            }
+            if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") < 0)
+            {
+                rotateAngle = Mathf.LerpAngle(rotateAngle, -135, (rotateSpeed * Time.deltaTime));
+            }
+            if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") == 0)
+            {
+                rotateAngle = Mathf.LerpAngle(rotateAngle, 90, (rotateSpeed * Time.deltaTime));
+            }
+            if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") == 0)
+            {
+                rotateAngle = Mathf.LerpAngle(rotateAngle, -90, (rotateSpeed * Time.deltaTime));
+            }
+            if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") == 0)
+            {
+                rotateAngle = Mathf.LerpAngle(rotateAngle, 0, (rotateSpeed * Time.deltaTime));
+            }
+            if (Input.GetAxis("Vertical") < 0 && Input.GetAxis("Horizontal") == 0)
+            {
+                rotateAngle = Mathf.LerpAngle(rotateAngle, 180, (rotateSpeed * Time.deltaTime));
+            }
 
-        //Attack animation
-        if (Input.GetButtonDown("Fire1") && deltaAngle <= 0)
+            //Get the deltaAngle by subracting the before and after rotateAngle
+            float angleTwo = rotateAngle;
+            deltaAngle = angleOne - angleTwo;
+            //Attack pause counter
+            attackPauseCount = attackPauseCount + (attackPauseCount * Time.deltaTime);
+        }
+
+        //ATTACK
+        //Attack animation after attack pause count 
+        if (Input.GetButtonDown("Fire1") && deltaAngle <= 0 && attackPauseCount > attackPause)
         {
             animator.SetTrigger("playerAttackR");
+            attackPauseCount = 1f;
         }
-        else if (Input.GetButtonDown("Fire1") && deltaAngle > 0)
+        else if (Input.GetButtonDown("Fire1") && deltaAngle > 0 && attackPauseCount > attackPause)
         {
             animator.SetTrigger("playerAttackL");
+            attackPauseCount = 1f;
         }
-     
 
-        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("playerIdle"))
-        //{
-            transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, rotateAngle, 0)); 
-       // }
+        //THE WORK
+        //Code that takes from above and does the work
+        transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, rotateAngle, 0)); 
         movement = transform.TransformDirection(movement);
-        controller.Move(movement*Time.deltaTime);
+        controller.Move(movement * Time.deltaTime);
     }
 
 }
