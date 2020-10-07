@@ -8,7 +8,7 @@ public class CharacterMover : MonoBehaviour
     private CharacterController controller;
     private Vector3 movement;
     public bool canControl = true;
-    public float gravity = 25f;
+    public float gravityForce = 25f;
     public float jumpForce = 12f;
     private int jumpCount = 0;
     public int maxJumpCount = 2;
@@ -42,7 +42,7 @@ public class CharacterMover : MonoBehaviour
         if (canControl == true)
         {
             //Constant increasing downward movement for gravity  
-            movement.y -= gravity * Time.deltaTime;
+            movement.y -= gravityForce * Time.deltaTime;
             
             //JUMP
             //Keep downward movement from going out of control by reseting gravity but with extra umph to keep grounded. Reset jump count when hits the ground 
