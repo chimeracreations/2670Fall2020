@@ -25,9 +25,14 @@ public class CharacterMover : MonoBehaviour
     private float dashCount = 0f;
     private float dashRestCount = 0f;
     private bool canDash = true;
+    private TrailRenderer dashTrail;
     private Animator animator;
-    public float attackPause = 2f;
+    public float attackPause = 1.15f;
     private float attackPauseCount;
+    public GameObject tail;
+    private TrailRenderer tailTrail;
+    public float TailEmit = 0.8f;
+    private float tailEmitCount;
 
     
     void Start()
@@ -35,6 +40,12 @@ public class CharacterMover : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
         attackPauseCount = attackPause;
+        dashTrail = GetComponent<TrailRenderer>();
+        tail = GameObject.FindGameObjectWithTag("Tail");
+        tailTrail = tail.GetComponent<TrailRenderer>();
+        dashTrail.emitting = false;
+        tailTrail.emitting = false;
+        tailEmitCount = 1;
     }
     
     void Update()
@@ -68,6 +79,7 @@ public class CharacterMover : MonoBehaviour
             if (Input.GetButtonDown("Fire2") && canDash) 
             {
                 dashCount = dashCount + 1 * Time.deltaTime;
+                dashTrail.emitting = true;
             }
 
             //Moves the character at dash speed for a set time. dashCooldown is not 1 value equals 1 second but should run off real time
@@ -82,7 +94,8 @@ public class CharacterMover : MonoBehaviour
             else if (dashCount >= dashCooldown)
             {
                 dashCount = 0;
-                canDash = false;         
+                canDash = false;  
+                dashTrail.emitting = false;       
             }
 
             else if (canDash == false)
@@ -159,14 +172,24 @@ public class CharacterMover : MonoBehaviour
             //Attack animation after attack pause count 
             if (Input.GetButtonDown("Fire1") && deltaAngle <= 0 && attackPauseCount > attackPause)
             {
+                tailEmitCount = 0;
                 animator.SetTrigger("playerAttackR");
                 attackPauseCount = 1f;
+
             }
             else if (Input.GetButtonDown("Fire1") && deltaAngle > 0 && attackPauseCount > attackPause)
             {
+                tailEmitCount = 0;
                 animator.SetTrigger("playerAttackL");
                 attackPauseCount = 1f;
+
             }
+            tailEmitCount = tailEmitCount + 1 * Time.deltaTime;
+            if (tailEmitCount < TailEmit)
+            {
+                tailTrail.emitting = true;
+            }
+            else tailTrail.emitting = false;
         }
         //THE WORK
         //Code that takes from above and does the work
