@@ -33,6 +33,7 @@ public class CharacterMover : MonoBehaviour
     private TrailRenderer tailTrail;
     public float TailEmit = 0.8f;
     private float tailEmitCount;
+    public bool madeNoise;
 
     
     void Start()
@@ -50,6 +51,7 @@ public class CharacterMover : MonoBehaviour
     
     void Update()
     {   
+        madeNoise = false;
         if (canControl == true)
         {
             //Constant increasing downward movement for gravity  
@@ -72,6 +74,7 @@ public class CharacterMover : MonoBehaviour
             {
                 movement.y = jumpForce;
                 jumpCount++;
+                madeNoise = true;
             }
         
             //MOVEMENT
@@ -80,6 +83,7 @@ public class CharacterMover : MonoBehaviour
             {
                 dashCount = dashCount + 1 * Time.deltaTime;
                 dashTrail.emitting = true;
+                madeNoise = true;
             }
 
             //Moves the character at dash speed for a set time. dashCooldown is not 1 value equals 1 second but should run off real time
@@ -88,6 +92,7 @@ public class CharacterMover : MonoBehaviour
                 movement.x = Input.GetAxis("Horizontal") * dashMoveSpeed;
                 movement.z = Input.GetAxis("Vertical") * dashMoveSpeed;
                 dashCount = dashCount + 1 * Time.deltaTime;
+                madeNoise = true;
             }
 
             //Resets dashCount and canDash once dashcount reaches the dashCooldown
@@ -114,6 +119,7 @@ public class CharacterMover : MonoBehaviour
             {
                 movement.x = Input.GetAxis("Horizontal") * fastMoveSpeed;
                 movement.z = Input.GetAxis("Vertical") * fastMoveSpeed;
+                madeNoise = true;
             }
             //Regular movement
             else if (canDash)
