@@ -17,6 +17,7 @@ public class CharacterMover : MonoBehaviour
     public float fastMoveSpeed = 6f;
     public float dashMoveSpeed = 12f;
     public float recoveryMoveSpeed = 2.5f;
+    public float diagonalRestraint = 0.9f;
     private float rotateAngle;
     private float deltaAngle;
     public float rotateSpeed = 2.8f;
@@ -29,12 +30,11 @@ public class CharacterMover : MonoBehaviour
     private Animator animator;
     public float attackPause = 1.15f;
     private float attackPauseCount;
-    public GameObject tail;
+    private GameObject tail;
     private TrailRenderer tailTrail;
     public float TailEmit = 0.8f;
     private float tailEmitCount;
     public bool madeNoise;
-
     
     void Start()
     {
@@ -74,7 +74,6 @@ public class CharacterMover : MonoBehaviour
             {
                 movement.y = jumpForce;
                 jumpCount++;
-                madeNoise = true;
             }
         
             //MOVEMENT
@@ -137,18 +136,26 @@ public class CharacterMover : MonoBehaviour
                 if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") > 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, 45, (rotateSpeed * Time.deltaTime));
+                    movement.x = movement.x * diagonalRestraint;
+                    movement.z = movement.z * diagonalRestraint;
                 }
                 if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") > 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, -45, (rotateSpeed * Time.deltaTime));
+                    movement.x = movement.x * diagonalRestraint;
+                    movement.z = movement.z * diagonalRestraint;
                 }
                 if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") < 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, 135, (rotateSpeed * Time.deltaTime));
+                    movement.x = movement.x * diagonalRestraint;
+                    movement.z = movement.z * diagonalRestraint;
                 }
                 if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") < 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, -135, (rotateSpeed * Time.deltaTime));
+                    movement.x = movement.x * diagonalRestraint;
+                    movement.z = movement.z * diagonalRestraint;
                 }
                 if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") == 0)
                 {
@@ -194,6 +201,7 @@ public class CharacterMover : MonoBehaviour
             if (tailEmitCount < TailEmit)
             {
                 tailTrail.emitting = true;
+                madeNoise = true;
             }
             else tailTrail.emitting = false;
         }

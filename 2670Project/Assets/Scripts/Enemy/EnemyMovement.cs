@@ -14,8 +14,7 @@ public class EnemyMovement : MonoBehaviour
     public float patrolSpeed = 2f;
     public float huntSpeed = 3.5f;
     private CharacterMover playerMovement;
-    
-   
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -33,13 +32,13 @@ public class EnemyMovement : MonoBehaviour
             agent.destination = patrolPoints[i];
             i = (i + 1) % patrolPoints.Count;
         }
-
-        if (canHunt == true)
+        else if (canHunt == true)
         {
             agent.speed = huntSpeed;
             agent.destination = player.transform.position;
-        }
+        }       
     }
+    
 
     private void OnTriggerStay(Collider other)
     {
