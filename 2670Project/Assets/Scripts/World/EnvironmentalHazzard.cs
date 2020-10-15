@@ -24,4 +24,5 @@ public class EnvironmentalHazzard : MonoBehaviour
     {
         mesh.material.color = startColor;
     } 
+    
 }

@@ -204,12 +204,13 @@ public class CharacterMover : MonoBehaviour
                 madeNoise = true;
             }
             else tailTrail.emitting = false;
+        
+            //THE WORK
+            //Code that takes from above and does the work
+            transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, rotateAngle, 0)); 
+            movement = transform.TransformDirection(movement);
+            controller.Move(movement * Time.deltaTime);
         }
-        //THE WORK
-        //Code that takes from above and does the work
-        transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, rotateAngle, 0)); 
-        movement = transform.TransformDirection(movement);
-        controller.Move(movement * Time.deltaTime);
     }
 
 }
