@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class TurretBullet : MonoBehaviour
 {
-    public GameObject bullet;
-    public float lifeTime;
-    public float bulletSpeed;
+    public float lifeTime = 3f;
+    public float bulletSpeed = 10f;
+    private Rigidbody rBody;
 
-    // Start is called before the first frame update
+    void OnCollisionEnter(Collision collision) 
+    {
+        Destroy(gameObject);
+    }   
     private IEnumerator Start()
     {
-
+        rBody = GetComponent<Rigidbody>();
+        rBody.AddRelativeForce(Vector3.forward * bulletSpeed);
         yield return new WaitForSeconds(lifeTime);
-        Destroy(bullet);
-    }
-
+        Destroy(gameObject);
+    }    
 }
