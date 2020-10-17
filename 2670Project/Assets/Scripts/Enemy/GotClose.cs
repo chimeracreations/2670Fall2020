@@ -15,6 +15,7 @@ public class GotClose : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
+        if (other.tag == "Player")
         enemyFarCollider.canHunt = true;
     }
 

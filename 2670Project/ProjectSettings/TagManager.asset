@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Checkpoint
   - Tail
+  - Enemy
+  - PlayerModel
+  - TailStink
   layers:
   - Default
   - TransparentFX

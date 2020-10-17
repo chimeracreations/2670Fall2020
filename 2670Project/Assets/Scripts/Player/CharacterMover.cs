@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMover : MonoBehaviour
 {
-    private CharacterController controller;
-    private Vector3 movement;
+    public CharacterController controller;
+    public Vector3 movement;
     public bool canControl = true;
     public float gravityForce = 25f;
     public float jumpForce = 12f;
@@ -30,20 +30,35 @@ public class CharacterMover : MonoBehaviour
     private Animator animator;
     public float attackPause = 1.15f;
     private float attackPauseCount;
-    private GameObject tail;
+    private GameObject tailStink;
     private TrailRenderer tailTrail;
     public float TailEmit = 0.8f;
     private float tailEmitCount;
     public bool madeNoise;
+    private readonly WaitForFixedUpdate wffu = new WaitForFixedUpdate();
+    private float knockbackDuration = .4f;
+    private float immuneDuration = 1.9f;
+    private Vector3 pushDirection;
+    private bool isKnockbacked = false;
+    private GameObject playerModel;
+    private GameObject tail;
+    Renderer playerColor;
+    Renderer playerColor2;
+    public Color color;
+    
     
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        playerModel = GameObject.FindGameObjectWithTag("PlayerModel");
+        tail = GameObject.FindGameObjectWithTag("Tail");
+        playerColor = playerModel.GetComponent<Renderer>();
+        playerColor2 = tail.GetComponentInParent<Renderer>();
         attackPauseCount = attackPause;
         dashTrail = GetComponent<TrailRenderer>();
-        tail = GameObject.FindGameObjectWithTag("Tail");
-        tailTrail = tail.GetComponent<TrailRenderer>();
+        tailStink = GameObject.FindGameObjectWithTag("TailStink");
+        tailTrail = tailStink.GetComponent<TrailRenderer>();
         dashTrail.emitting = false;
         tailTrail.emitting = false;
         tailEmitCount = 1;
@@ -213,4 +228,42 @@ public class CharacterMover : MonoBehaviour
         }
     }
 
+    private IEnumerator OnTriggerEnter(Collider other) 
+    {
+        if (other.tag == "Enemy" && isKnockbacked == false)
+        {
+            isKnockbacked = true;
+            canControl = false;
+            pushDirection = new Vector3(0,0,0);
+            pushDirection = other.transform.position - transform.position;
+            pushDirection =- pushDirection.normalized;
+            pushDirection.y = 0;
+            float i = 0;  
+            gameObject.tag = "Untagged";
+            while (i <= knockbackDuration)
+            {
+                yield return wffu;
+                i += (1f * Time.deltaTime);
+                controller.Move(pushDirection * Time.deltaTime * dashMoveSpeed);
+            }
+            canControl = true;
+            color = Color.white;
+            while (i <= immuneDuration)
+            {
+                yield return wffu;
+                i += (1f * Time.deltaTime);
+                if ((i > .5f && i < .7f) || (i > .9f && i < 1.1f) || (i > 1.3f && i < 1.5f)
+                    || (i > 1.7f && i < 1.9f))
+                {
+                    color.a = .4f;
+                }
+                else color.a = 1f;
+                playerColor.material.color = color;
+                playerColor2.material.color = color;
+                
+            }
+            gameObject.tag = "Player";
+            isKnockbacked = false;
+        }
+    }
 }

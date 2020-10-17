@@ -19,7 +19,8 @@ public class Turret : MonoBehaviour
     public float bulletDelay = 2f;
     private float bulletDelayCount;
     private Vector3 rotationOffset;
-    Vector3 currentEulerAngles;
+    private Vector3 currentEulerAngles;
+    private Vector3 origin;
 
 
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class Turret : MonoBehaviour
         characterMover = player.GetComponent<CharacterMover>();
         cc = player.GetComponent<CharacterController>();
         cam = player.GetComponentInChildren<Camera>();
+        origin = transform.position;
         isEntered = false;
         bulletDelayCount = bulletDelay + 1;
     }
@@ -66,30 +68,40 @@ public class Turret : MonoBehaviour
 
     private IEnumerator OnTriggerEnter(Collider other) 
     {
-        characterMover.canControl = false;
-        var offset = playerTurretPosition.transform.position - player.transform.position;
-        while (offset.magnitude > .1f && isEntered == false)
+        if (other.tag == "Player")
         {
-            yield return wffu;
-            offset = playerTurretPosition.transform.position - player.transform.position;
-            if(offset.magnitude > .1f) 
+            characterMover.canControl = false;
+            var offset = playerTurretPosition.transform.position - player.transform.position;
+            while (offset.magnitude > .1f && isEntered == false)
             {
-                offset = offset.normalized * characterMover.moveSpeed;
-                cc.Move(offset * .5f * Time.deltaTime);
-                player.transform.GetChild(0).rotation = instancer.transform.rotation;
-                transform.parent.position = transform.parent.position + new Vector3(0, 1f * Time.deltaTime, 0);
-            }
-            else if (offset.magnitude <= .1f) 
-            {
-                rotationOffset = player.transform.GetChild(0).eulerAngles;
-                isEntered = true;
-                cam.enabled = true;
+                yield return wffu;
+                offset = playerTurretPosition.transform.position - player.transform.position;
+                if(offset.magnitude > .1f) 
+                {
+                    offset = offset.normalized * characterMover.moveSpeed;
+                    cc.Move(offset * .5f * Time.deltaTime);
+                    player.transform.GetChild(0).rotation = instancer.transform.rotation;
+                    transform.parent.position = transform.parent.position + new Vector3(0, 1f * Time.deltaTime, 0);
+                }
+                else if (offset.magnitude <= .1f) 
+                {
+                    rotationOffset = player.transform.GetChild(0).eulerAngles;
+                    isEntered = true;
+                    cam.enabled = true;
+                }
             }
         }
     }
-    private void OnTriggerExit(Collider other)
+    private IEnumerator OnTriggerExit(Collider other)
     {
         isEntered = false;
         characterMover.canControl = true;
+        cam.enabled = false;
+         while (transform.parent.position.y >= (origin.y + .1f))
+            {
+                yield return wffu;
+                transform.parent.position = transform.parent.position + new Vector3(0, -1f * Time.deltaTime, 0);
+            }
+            transform.parent.position = origin;
     }
 }

@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (playerMovement.madeNoise)
+        if (playerMovement.madeNoise && other.tag == "Player")
         canHunt = true;
     }
     private void OnTriggerExit(Collider other)
