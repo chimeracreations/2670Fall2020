@@ -21,6 +21,8 @@ public class Turret : MonoBehaviour
     private Vector3 rotationOffset;
     private Vector3 currentEulerAngles;
     private Vector3 origin;
+    private Quaternion rotationOrigin;
+    private bool resetNeeded;
 
 
     // Start is called before the first frame update
@@ -31,6 +33,7 @@ public class Turret : MonoBehaviour
         cc = player.GetComponent<CharacterController>();
         cam = player.GetComponentInChildren<Camera>();
         origin = transform.position;
+        rotationOrigin = transform.rotation;
         isEntered = false;
         bulletDelayCount = bulletDelay + 1;
     }
@@ -71,12 +74,13 @@ public class Turret : MonoBehaviour
         if (other.tag == "Player")
         {
             characterMover.canControl = false;
+            resetNeeded = false;
             var offset = playerTurretPosition.transform.position - player.transform.position;
             while (offset.magnitude > .1f && isEntered == false)
             {
                 yield return wffu;
                 offset = playerTurretPosition.transform.position - player.transform.position;
-                if(offset.magnitude > .1f) 
+                if(offset.magnitude > .1f && transform.parent.position.y < 2f && resetNeeded == false) 
                 {
                     offset = offset.normalized * characterMover.moveSpeed;
                     cc.Move(offset * .5f * Time.deltaTime);
@@ -88,6 +92,13 @@ public class Turret : MonoBehaviour
                     rotationOffset = player.transform.GetChild(0).eulerAngles;
                     isEntered = true;
                     cam.enabled = true;
+                }
+                else if (transform.parent.position.y > 2f)
+                {
+                    resetNeeded = true;
+                    cam.enabled = false;
+                    transform.parent.position = origin;
+                    transform.parent.rotation = rotationOrigin;
                 }
             }
         }
@@ -101,7 +112,11 @@ public class Turret : MonoBehaviour
             {
                 yield return wffu;
                 transform.parent.position = transform.parent.position + new Vector3(0, -1f * Time.deltaTime, 0);
+                transform.parent.rotation = Quaternion.Lerp(transform.parent.rotation, rotationOrigin, .1f);
             }
             transform.parent.position = origin;
+            transform.parent.rotation = rotationOrigin;
+            hCrosshair = 0f;
+            vCrosshair = 0f;
     }
 }
