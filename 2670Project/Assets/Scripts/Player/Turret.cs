@@ -22,8 +22,9 @@ public class Turret : MonoBehaviour
     private Vector3 currentEulerAngles;
     private Vector3 origin;
     private Quaternion rotationOrigin;
+    public Vector3 runawayCheck;
     private bool resetNeeded;
-
+    public float ejectCount = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class Turret : MonoBehaviour
         rotationOrigin = transform.rotation;
         isEntered = false;
         bulletDelayCount = bulletDelay + 1;
+        ejectCount = 1f;
     }
 
     // Update is called once per frame
@@ -66,6 +68,11 @@ public class Turret : MonoBehaviour
             //apply the change to the gameObject
             player.transform.GetChild(0).eulerAngles = currentEulerAngles;
             transform.parent.eulerAngles = currentEulerAngles;
+
+            if (Input.GetButtonDown("Fire2") && isEntered == true)
+            {
+                StartCoroutine("Escape");
+            }
         }
     }
 
@@ -73,14 +80,16 @@ public class Turret : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            ejectCount = 1f;
             characterMover.canControl = false;
             resetNeeded = false;
             var offset = playerTurretPosition.transform.position - player.transform.position;
             while (offset.magnitude > .1f && isEntered == false)
             {
                 yield return wffu;
+                runawayCheck = transform.parent.position - origin;
                 offset = playerTurretPosition.transform.position - player.transform.position;
-                if(offset.magnitude > .1f && transform.parent.position.y < 2f && resetNeeded == false) 
+                if(offset.magnitude > .1f && runawayCheck.y < 2f && resetNeeded == false) 
                 {
                     offset = offset.normalized * characterMover.moveSpeed;
                     cc.Move(offset * .5f * Time.deltaTime);
@@ -93,7 +102,7 @@ public class Turret : MonoBehaviour
                     isEntered = true;
                     cam.enabled = true;
                 }
-                else if (transform.parent.position.y > 2f)
+                else if (runawayCheck.y >= 2f)
                 {
                     resetNeeded = true;
                     cam.enabled = false;
@@ -118,5 +127,16 @@ public class Turret : MonoBehaviour
             transform.parent.rotation = rotationOrigin;
             hCrosshair = 0f;
             vCrosshair = 0f;
+    }
+
+    private IEnumerator Escape()
+    {
+        while (ejectCount < 3f && isEntered == true)
+        {
+            yield return wffu;
+            cc.Move(transform.parent.rotation * Vector3.back * Time.deltaTime);
+            ejectCount += ejectCount * Time.deltaTime;
+        }
+        ejectCount = 1f;
     }
 }
