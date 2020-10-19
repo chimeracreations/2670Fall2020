@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     public float patrolSpeed = 2f;
     public float huntSpeed = 3.5f;
     private CharacterMover playerMovement;
+ 
 
     private void Start()
     {

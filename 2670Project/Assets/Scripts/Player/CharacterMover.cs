@@ -42,6 +42,7 @@ public class CharacterMover : MonoBehaviour
     private bool isKnockbacked = false;
     private GameObject playerModel;
     private GameObject tail;
+    private Collider tailCol;
     Renderer playerColor;
     Renderer playerColor2;
     public Color color;
@@ -62,6 +63,8 @@ public class CharacterMover : MonoBehaviour
         dashTrail.emitting = false;
         tailTrail.emitting = false;
         tailEmitCount = 1;
+        tailCol = tailStink.GetComponent<Collider>();
+        tailCol.isTrigger = false;
     }
     
     void Update()
@@ -200,6 +203,7 @@ public class CharacterMover : MonoBehaviour
             //Attack animation after attack pause count 
             if (Input.GetButtonDown("Fire1") && deltaAngle <= 0 && attackPauseCount > attackPause)
             {
+                tailCol.isTrigger = true;
                 tailEmitCount = 0;
                 animator.SetTrigger("playerAttackR");
                 attackPauseCount = 1f;
@@ -207,6 +211,7 @@ public class CharacterMover : MonoBehaviour
             }
             else if (Input.GetButtonDown("Fire1") && deltaAngle > 0 && attackPauseCount > attackPause)
             {
+                tailCol.isTrigger = true;
                 tailEmitCount = 0;
                 animator.SetTrigger("playerAttackL");
                 attackPauseCount = 1f;
@@ -218,7 +223,11 @@ public class CharacterMover : MonoBehaviour
                 tailTrail.emitting = true;
                 madeNoise = true;
             }
-            else tailTrail.emitting = false;
+            else 
+            {
+                tailTrail.emitting = false;
+                tailCol.isTrigger = false;
+            }
         
             //THE WORK
             //Code that takes from above and does the work
