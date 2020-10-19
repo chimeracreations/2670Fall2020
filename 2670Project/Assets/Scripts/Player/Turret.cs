@@ -24,7 +24,7 @@ public class Turret : MonoBehaviour
     private Quaternion rotationOrigin;
     public Vector3 runawayCheck;
     private bool resetNeeded;
-    public float ejectCount = 1f;
+    private float ejectCount = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -134,7 +134,7 @@ public class Turret : MonoBehaviour
         while (ejectCount < 3f && isEntered == true)
         {
             yield return wffu;
-            cc.Move(transform.parent.rotation * Vector3.back * Time.deltaTime);
+            cc.Move(transform.parent.rotation * Vector3.back * 2.2f * Time.deltaTime);
             ejectCount += ejectCount * Time.deltaTime;
         }
         ejectCount = 1f;

@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 6928308201966714151}
   - component: {fileID: 6928308201966714150}
   - component: {fileID: 6928308201966714202}
+  - component: {fileID: 7374527327786129058}
   m_Layer: 0
   m_Name: EnemyOne
   m_TagString: Enemy
@@ -148,7 +149,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6928308201966714148}
-  m_Material: {fileID: 13400000, guid: c9bec0ecadc5ab6479d11776b9b63b5d, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -177,6 +178,21 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7374527327786129058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6928308201966714148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51508debfe103274380ac98dbd757f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 6928308201966714148}
+  knockbackDuration: 0.25
+  knockbackSpeed: 15
 --- !u!1 &6928308202055810415
 GameObject:
   m_ObjectHideFlags: 0

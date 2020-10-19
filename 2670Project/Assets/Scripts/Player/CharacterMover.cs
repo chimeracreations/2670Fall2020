@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMover : MonoBehaviour
 {
-    public CharacterController controller;
-    public Vector3 movement;
-    public bool canControl = true;
+    [HideInInspector] public CharacterController controller;
+    [HideInInspector] public Vector3 movement;
+    [HideInInspector] public bool canControl = true;
     public float gravityForce = 25f;
     public float jumpForce = 12f;
     private int jumpCount = 0;
@@ -45,7 +45,7 @@ public class CharacterMover : MonoBehaviour
     private Collider tailCol;
     Renderer playerColor;
     Renderer playerColor2;
-    public Color color;
+    private Color color;
     
     
     void Start()
@@ -64,7 +64,7 @@ public class CharacterMover : MonoBehaviour
         tailTrail.emitting = false;
         tailEmitCount = 1;
         tailCol = tailStink.GetComponent<Collider>();
-        tailCol.isTrigger = false;
+        tailCol.enabled = false;
     }
     
     void Update()
@@ -203,7 +203,7 @@ public class CharacterMover : MonoBehaviour
             //Attack animation after attack pause count 
             if (Input.GetButtonDown("Fire1") && deltaAngle <= 0 && attackPauseCount > attackPause)
             {
-                tailCol.isTrigger = true;
+                tailCol.enabled = true;
                 tailEmitCount = 0;
                 animator.SetTrigger("playerAttackR");
                 attackPauseCount = 1f;
@@ -211,7 +211,7 @@ public class CharacterMover : MonoBehaviour
             }
             else if (Input.GetButtonDown("Fire1") && deltaAngle > 0 && attackPauseCount > attackPause)
             {
-                tailCol.isTrigger = true;
+                tailCol.enabled = true;
                 tailEmitCount = 0;
                 animator.SetTrigger("playerAttackL");
                 attackPauseCount = 1f;
@@ -226,7 +226,7 @@ public class CharacterMover : MonoBehaviour
             else 
             {
                 tailTrail.emitting = false;
-                tailCol.isTrigger = false;
+                tailCol.enabled = false;
             }
         
             //THE WORK

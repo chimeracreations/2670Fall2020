@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 8837813937507243125}
   - component: {fileID: 8837813937507243130}
   - component: {fileID: 8837813937507243131}
+  - component: {fileID: -9064144034457302061}
   - component: {fileID: 8837813937507243128}
   - component: {fileID: -2065831567945292291}
   - component: {fileID: 8837813937507243129}
   m_Layer: 0
   m_Name: StinkBullet
-  m_TagString: Player
+  m_TagString: TailStink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8837813937507243128
+--- !u!135 &-9064144034457302061
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,6 +97,19 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.35
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &8837813937507243128
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837813937507243134}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.38
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-2065831567945292291
 Rigidbody:
