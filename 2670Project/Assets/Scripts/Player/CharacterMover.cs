@@ -39,7 +39,7 @@ public class CharacterMover : MonoBehaviour
     private float knockbackDuration = .4f;
     private float immuneDuration = 1.9f;
     private Vector3 pushDirection;
-    private bool isKnockbacked = false;
+    [HideInInspector] public bool isKnockbacked = false;
     private GameObject playerModel;
     private GameObject tail;
     private Collider tailCol;
