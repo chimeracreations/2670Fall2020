@@ -10,12 +10,14 @@ public class PlayerHealth : MonoBehaviour
     public int numOfHearts;
     public GameObject[] hearts;
     private CharacterMover mover;
+    private Respawn respawn;
 
     // Start is called before the first frame update
     void Start()
     {
         UpdateHearts();
         mover = GetComponent<CharacterMover>();
+        respawn = GetComponent<Respawn>();
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -36,7 +38,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            health = 0;
+            StartCoroutine(respawn.playerRespawn());
+            health = 3;
         }
 
         for (int i = 0; i < hearts.Length; i++)
