@@ -2722,7 +2722,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnPoint:
   - {fileID: 1985706598}
-  disableThis: {fileID: 1086813216}
+  render1: {fileID: 2095812523}
+  render2: {fileID: 1038307659}
+  tailTrail: {fileID: 578098789}
 --- !u!1 &1985706598
 GameObject:
   m_ObjectHideFlags: 0

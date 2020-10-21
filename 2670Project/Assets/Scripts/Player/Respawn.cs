@@ -7,7 +7,9 @@ public class Respawn : MonoBehaviour
     public GameObject[] respawnPoint;
     private WaitForSeconds wfs;
     private int i;
-    public GameObject disableThis;
+    public Renderer render1;
+    public Renderer render2;
+    public TrailRenderer tailTrail;
     private CharacterController controller;
     private CharacterMover mover;
 
@@ -33,10 +35,14 @@ public class Respawn : MonoBehaviour
     {
         mover.enabled = false;
         controller.enabled = false;
-        disableThis.SetActive(false);
+        render1.enabled = false;
+        render2.enabled = false;
+        tailTrail.enabled = false;
         transform.position = respawnPoint[i].transform.position;
         yield return wfs;
-        disableThis.SetActive(true);
+        render1.enabled = true;
+        render2.enabled = true;
+        tailTrail.enabled = true;
         controller.enabled = true;
         mover.enabled = true;
     }

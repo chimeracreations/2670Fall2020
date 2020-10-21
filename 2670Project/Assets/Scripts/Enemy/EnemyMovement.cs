@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
     private int i = 0;
     private void Update() 
     {
-        if (canHunt == false)
+        if (canHunt == false || playerMovement.enabled == false)
         {
             agent.speed = patrolSpeed;
             if (agent.pathPending || !(agent.remainingDistance < 2f)) return;
