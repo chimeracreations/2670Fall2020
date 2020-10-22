@@ -42,10 +42,14 @@ public class CharacterMover : MonoBehaviour
     [HideInInspector] public bool isKnockbacked = false;
     private GameObject playerModel;
     private GameObject tail;
+    private Transform tailPosition;
     private Collider tailCol;
-    Renderer playerColor;
-    Renderer playerColor2;
+    private Renderer playerColor;
+    private Renderer playerColor2;
     private Color color;
+    public GameObject bomb;
+    public float bombCooldown = 5f;
+    private float bombCooldownCount = 5f;
     
     
     void Start()
@@ -54,6 +58,7 @@ public class CharacterMover : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         playerModel = GameObject.FindGameObjectWithTag("PlayerModel");
         tail = GameObject.FindGameObjectWithTag("Tail");
+        tailPosition = tail.transform;
         playerColor = playerModel.GetComponent<Renderer>();
         playerColor2 = tail.GetComponentInParent<Renderer>();
         attackPauseCount = attackPause;
@@ -228,6 +233,15 @@ public class CharacterMover : MonoBehaviour
                 tailTrail.emitting = false;
                 tailCol.enabled = false;
             }
+
+            bombCooldownCount = bombCooldownCount + Time.deltaTime;
+
+            if (Input.GetButtonDown("Fire4") && bombCooldownCount >= bombCooldown)
+            {
+                Instantiate(bomb, tailPosition.position, tailPosition.rotation);
+                bombCooldownCount = 0f;
+            }
+
         
             //THE WORK
             //Code that takes from above and does the work
@@ -239,7 +253,7 @@ public class CharacterMover : MonoBehaviour
 
     private IEnumerator OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Enemy" && isKnockbacked == false)
+        if ((other.tag == "Enemy" || other.tag == "Bomb") && isKnockbacked == false)
         {
             isKnockbacked = true;
             canControl = false;

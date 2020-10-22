@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 6928308201966714151}
   - component: {fileID: 6928308201966714150}
   - component: {fileID: 6928308201966714202}
-  - component: {fileID: 7374527327786129058}
+  - component: {fileID: 3616535906502952132}
   m_Layer: 0
   m_Name: EnemyOne
   m_TagString: Enemy
@@ -178,7 +178,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &7374527327786129058
+--- !u!114 &3616535906502952132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,12 +187,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6928308201966714148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51508debfe103274380ac98dbd757f71, type: 3}
+  m_Script: {fileID: 11500000, guid: 13bc5e4cbe097fb4f9fc7701baf27ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 6928308201966714148}
   knockbackDuration: 0.25
   knockbackSpeed: 15
+  maxHealth: 3
 --- !u!1 &6928308202055810415
 GameObject:
   m_ObjectHideFlags: 0

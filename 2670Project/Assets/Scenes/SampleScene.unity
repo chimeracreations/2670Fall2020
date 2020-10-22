@@ -2665,6 +2665,8 @@ MonoBehaviour:
   TailEmit: 0.6
   madeNoise: 0
   isKnockbacked: 0
+  bomb: {fileID: 7380053718402745456, guid: 668c599dac386564d9f5c6d06aa2fa9a, type: 3}
+  bombCooldown: 5
 --- !u!143 &1954725491
 CharacterController:
   m_ObjectHideFlags: 0

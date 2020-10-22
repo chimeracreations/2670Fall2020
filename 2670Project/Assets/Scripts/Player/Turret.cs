@@ -11,7 +11,7 @@ public class Turret : MonoBehaviour
     private float hCrosshair;
     private float vCrosshair;
     public float speed = 2f;
-    public WaitForFixedUpdate wffu = new WaitForFixedUpdate();
+    private WaitForFixedUpdate wffu = new WaitForFixedUpdate();
     public bool isEntered;
     private CharacterController cc;
     public GameObject playerTurretPosition;

@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Enemy" && mover.isKnockbacked == false)
+        if ((other.tag == "Enemy" || other.tag == "Bomb") && mover.isKnockbacked == false)
         {
             health -= 0.5f;
             UpdateHearts();
