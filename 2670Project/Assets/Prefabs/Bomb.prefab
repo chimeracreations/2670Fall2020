@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i: 0
+  bomb: {fileID: 7380053718402745456}
 --- !u!54 &3466820017532289963
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ public class Turret : MonoBehaviour
             vCrosshair += Input.GetAxis ("Vertical")* speed * Time.deltaTime;
     
             hCrosshair = Mathf.Clamp(hCrosshair, -90f, 90f);
-            vCrosshair = Mathf.Clamp(vCrosshair, -50f, 30f);      
+            vCrosshair = Mathf.Clamp(vCrosshair, -30f, 30f);      
 
             //You need the rotation offset or if the turret GameObject starts at a rotated position 
             //it will rotate on the forward axis and not the gameObject's axis
@@ -116,6 +116,7 @@ public class Turret : MonoBehaviour
     {
         isEntered = false;
         characterMover.canControl = true;
+        cc.Move(transform.parent.rotation * Vector3.back * .5f);
         cam.enabled = false;
          while (transform.parent.position.y >= (origin.y + .1f))
             {

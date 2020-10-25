@@ -10,6 +10,7 @@ public class Bomb : MonoBehaviour
     private Color colorSave;
     private Collider bombCollider;
     public float i = 0;
+    public GameObject bomb;
     // Start is called before the first frame update
     private void OnEnable() 
     {
@@ -48,7 +49,7 @@ public class Bomb : MonoBehaviour
             
             bombColor.material.color = color;
             if (i == 4) bombCollider.enabled = true;
-            if (i == 5) Destroy(gameObject);
+            if (i == 5) Destroy(bomb);
         }
     }
 }

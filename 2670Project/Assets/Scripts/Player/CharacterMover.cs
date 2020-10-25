@@ -43,6 +43,7 @@ public class CharacterMover : MonoBehaviour
     private GameObject playerModel;
     private GameObject tail;
     private Transform tailPosition;
+    private TrailRenderer backTrail;
     private Collider tailCol;
     private Renderer playerColor;
     private Renderer playerColor2;
@@ -50,6 +51,10 @@ public class CharacterMover : MonoBehaviour
     public GameObject bomb;
     public float bombCooldown = 5f;
     private float bombCooldownCount = 5f;
+    public float wallCooldown = 8f;
+    private float wallCooldownCount = 8f;
+    public float wallLength = 1.5f;
+    public GameObject wall;
     
     
     void Start()
@@ -59,6 +64,8 @@ public class CharacterMover : MonoBehaviour
         playerModel = GameObject.FindGameObjectWithTag("PlayerModel");
         tail = GameObject.FindGameObjectWithTag("Tail");
         tailPosition = tail.transform;
+        backTrail = tail.GetComponent<TrailRenderer>();
+        backTrail.emitting = false;
         playerColor = playerModel.GetComponent<Renderer>();
         playerColor2 = tail.GetComponentInParent<Renderer>();
         attackPauseCount = attackPause;
@@ -234,6 +241,7 @@ public class CharacterMover : MonoBehaviour
                 tailCol.enabled = false;
             }
 
+            //BOMBS
             bombCooldownCount = bombCooldownCount + Time.deltaTime;
 
             if (Input.GetButtonDown("Fire4") && bombCooldownCount >= bombCooldown)
@@ -242,6 +250,13 @@ public class CharacterMover : MonoBehaviour
                 bombCooldownCount = 0f;
             }
 
+            //STINK WALL
+            wallCooldownCount = wallCooldownCount + Time.deltaTime;
+            if (Input.GetButtonDown("Fire5") && wallCooldownCount >= wallCooldown)
+            {
+                StartCoroutine(Wall());
+                wallCooldownCount = 0f;
+            }
         
             //THE WORK
             //Code that takes from above and does the work
@@ -288,5 +303,24 @@ public class CharacterMover : MonoBehaviour
             gameObject.tag = "Player";
             isKnockbacked = false;
         }
+    }
+
+    private IEnumerator Wall()
+    {
+        float i = 0;
+        float timer = .25f;
+        backTrail.emitting = true;
+        while (i <= wallLength)
+        {
+            yield return wffu;
+            timer -= Time.deltaTime;
+            i += (1f * Time.deltaTime);
+             if (timer <= 0f)
+                {
+                    Instantiate(wall, tailPosition.position, tailPosition.rotation);
+                    timer = 0.5f;
+                }
+        }
+        backTrail.emitting = false;
     }
 }
