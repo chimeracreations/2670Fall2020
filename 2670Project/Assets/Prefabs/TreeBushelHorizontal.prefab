@@ -42,6 +42,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6803327505378761652
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860920104468993227}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.978447
+  m_Height: 19.26
+  m_Direction: 1
+  m_Center: {x: 2.03, y: 6.9, z: -1.06}
+--- !u!136 &414960996657566367
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8102002283631023116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.978447
+  m_Height: 19.26
+  m_Direction: 1
+  m_Center: {x: 2.03, y: 6.9, z: -1.06}
 --- !u!1001 &1723038264821476349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161,6 +189,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fde46dc4c9460644b17d6aab88584eb, type: 3}
+--- !u!1 &8102002283631023116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5859355972380146374, guid: 1fde46dc4c9460644b17d6aab88584eb, type: 3}
+  m_PrefabInstance: {fileID: 2387054110155419338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8879911585582894774 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6492868615513596028, guid: 1fde46dc4c9460644b17d6aab88584eb, type: 3}
@@ -347,6 +380,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fde46dc4c9460644b17d6aab88584eb, type: 3}
+--- !u!1 &7860920104468993227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5859355972380146374, guid: 1fde46dc4c9460644b17d6aab88584eb, type: 3}
+  m_PrefabInstance: {fileID: 4343444874546245133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7375851117657820785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6492868615513596028, guid: 1fde46dc4c9460644b17d6aab88584eb, type: 3}
