@@ -1,6 +1,6 @@
 # This file uses centimeters as units for non-parametric coordinates.
 
-mtllib RockyGladeB1.mtl
+mtllib MRockyGladeB1.mtl
 g default
 v -163.865875 -28.868780 90.640381
 v -257.858307 -28.868780 90.640381
