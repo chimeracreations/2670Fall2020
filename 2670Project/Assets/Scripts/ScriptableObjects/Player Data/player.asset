@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: player
   m_EditorClassIdentifier: 
   canControl: 1
-  healthValue: 1.5
-  maxHealth: 8
+  healthValue: 3
+  maxHealth: 3
   gravityForce: 25
   jumpForce: 12
   maxJumpCount: 2
@@ -26,8 +26,8 @@ MonoBehaviour:
   dashRest: 0.8
   recoveryMoveSpeed: 2.5
   diagonalRestraint: 0.9
-  rotateSpeed: 2.8
-  attackPause: 1.15
+  rotateSpeed: 6
+  attackPause: 1.35
   tailEmit: 0.8
   madeNoise: 0
   knockbackDuration: 0.4
