@@ -7,8 +7,7 @@ public class TurretBullet : MonoBehaviour
 {
     public float lifeTime = 3f;
     public float bulletSpeed = 10f;
-    private GameObject player;
-    private CharacterMover mover;
+    public PlayerData player;
     private Rigidbody rBody;
     public GameObject bullet;
     private UnityEngine.AI.NavMeshAgent agent;
@@ -16,19 +15,17 @@ public class TurretBullet : MonoBehaviour
 
     private IEnumerator Start()
     {
-        player = GameObject.FindWithTag("Player");
-        mover = player.GetComponent<CharacterMover>();
-        mover.madeNoise = true;
+        player.madeNoise = true;
         rBody = GetComponent<Rigidbody>();
         rBody.AddRelativeForce(Vector3.forward * bulletSpeed);
         yield return new WaitForSeconds(lifeTime);
-        mover.madeNoise = false;
+        player.madeNoise = false;
         Destroy(gameObject);
     }
 
     void OnCollisionEnter(Collision collision) 
     {
-        mover.madeNoise = false;
+        player.madeNoise = false;
         Destroy(gameObject);
     }      
 }

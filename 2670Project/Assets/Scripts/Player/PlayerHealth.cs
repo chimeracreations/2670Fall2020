@@ -6,50 +6,47 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float health;
-    public int numOfHearts;
     public GameObject[] hearts;
-    private CharacterMover mover;
+    public PlayerData player;
     private Respawn respawn;
 
     // Start is called before the first frame update
     void Start()
     {
         UpdateHearts();
-        mover = GetComponent<CharacterMover>();
         respawn = GetComponent<Respawn>();
     }
 
     private void OnTriggerEnter(Collider other) 
     {
-        if ((other.tag == "Enemy" || other.tag == "Bomb") && mover.isKnockbacked == false)
+        if ((other.tag == "Enemy" || other.tag == "Bomb") && player.isKnockbacked == false)
         {
-            health -= 0.5f;
+            player.healthValue -= 0.5f;
             UpdateHearts();
         }
     }
 
     private void UpdateHearts()
     {
-        if (health > numOfHearts)
+        if (player.healthValue > player.maxHealth)
         {
-            health = numOfHearts;
+            player.healthValue = player.maxHealth;
         }
 
-        if (health <= 0)
+        if (player.healthValue <= 0)
         {
             StartCoroutine(respawn.playerRespawn());
-            health = 3;
+            player.healthValue = 3;
         }
 
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (health == i + .5f)
+            if (player.healthValue == i + .5f)
             {
                 hearts[i].GetComponent<SpriteAtlasScript>().ChangeSprite("Heart_1");
             }
 
-            else if (i < health)
+            else if (i < player.healthValue)
             {
                 hearts[i].GetComponent<SpriteAtlasScript>().ChangeSprite("Heart_0");
             }
@@ -59,7 +56,7 @@ public class PlayerHealth : MonoBehaviour
                 hearts[i].GetComponent<SpriteAtlasScript>().ChangeSprite("Heart_2");
             }
 
-            if (i< numOfHearts)
+            if (i< player.maxHealth)
             {
                 hearts[i].GetComponent<Image>().enabled = true;
             }

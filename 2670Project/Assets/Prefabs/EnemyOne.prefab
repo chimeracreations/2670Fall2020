@@ -259,3 +259,4 @@ MonoBehaviour:
   - {x: 10.46, y: 0, z: 15}
   patrolSpeed: 2
   huntSpeed: 3.5
+  player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}

@@ -6,8 +6,8 @@ public class Turret : MonoBehaviour
 {
     public GameObject bullet;
     public Transform instancer;
-    private CharacterMover characterMover;
-    private GameObject player;
+    public PlayerData player;
+    private GameObject character;
     private float hCrosshair;
     private float vCrosshair;
     public float speed = 2f;
@@ -29,10 +29,9 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        characterMover = player.GetComponent<CharacterMover>();
-        cc = player.GetComponent<CharacterController>();
-        cam = player.GetComponentInChildren<Camera>();
+        character = GameObject.FindWithTag("Player");
+        cc = character.GetComponent<CharacterController>();
+        cam = character.GetComponentInChildren<Camera>();
         origin = transform.position;
         rotationOrigin = transform.rotation;
         isEntered = false;
@@ -66,7 +65,7 @@ public class Turret : MonoBehaviour
             currentEulerAngles = new Vector3(-vCrosshair, hCrosshair + rotationOffset.y, 0f);
 
             //apply the change to the gameObject
-            player.transform.GetChild(0).eulerAngles = currentEulerAngles;
+            character.transform.GetChild(0).eulerAngles = currentEulerAngles;
             transform.parent.eulerAngles = currentEulerAngles;
 
             if (Input.GetButtonDown("Fire2") && isEntered == true)
@@ -81,24 +80,24 @@ public class Turret : MonoBehaviour
         if (other.tag == "Player")
         {
             ejectCount = 1f;
-            characterMover.canControl = false;
+            player.canControl = false;
             resetNeeded = false;
-            var offset = playerTurretPosition.transform.position - player.transform.position;
+            var offset = playerTurretPosition.transform.position - character.transform.position;
             while (offset.magnitude > .1f && isEntered == false)
             {
                 yield return wffu;
                 runawayCheck = transform.parent.position - origin;
-                offset = playerTurretPosition.transform.position - player.transform.position;
+                offset = playerTurretPosition.transform.position - character.transform.position;
                 if(offset.magnitude > .1f && runawayCheck.y < 2f && resetNeeded == false) 
                 {
-                    offset = offset.normalized * characterMover.moveSpeed;
+                    offset = offset.normalized * player.moveSpeed;
                     cc.Move(offset * .5f * Time.deltaTime);
-                    player.transform.GetChild(0).rotation = instancer.transform.rotation;
+                    character.transform.GetChild(0).rotation = instancer.transform.rotation;
                     transform.parent.position = transform.parent.position + new Vector3(0, 1f * Time.deltaTime, 0);
                 }
                 else if (offset.magnitude <= .1f) 
                 {
-                    rotationOffset = player.transform.GetChild(0).eulerAngles;
+                    rotationOffset = character.transform.GetChild(0).eulerAngles;
                     isEntered = true;
                     cam.enabled = true;
                 }
@@ -115,7 +114,7 @@ public class Turret : MonoBehaviour
     private IEnumerator OnTriggerExit(Collider other)
     {
         isEntered = false;
-        characterMover.canControl = true;
+        player.canControl = true;
         cc.Move(transform.parent.rotation * Vector3.back * .5f);
         cam.enabled = false;
          while (transform.parent.position.y >= (origin.y + .1f))

@@ -8,24 +8,27 @@ public class EnemyMovement : MonoBehaviour
 {
     public GameObject enemy;
     private NavMeshAgent agent;
-    private GameObject player;
+    private GameObject character;
     public bool canHunt;
     public List<Vector3> patrolPoints;
     public float patrolSpeed = 2f;
     public float huntSpeed = 3.5f;
     private CharacterMover playerMovement;
+    public PlayerData player;
+    private bool detectNoise;
  
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        character = GameObject.FindWithTag("Player");
+        playerMovement = character.GetComponent<CharacterMover>();
         agent = enemy.GetComponent<NavMeshAgent>();
-        playerMovement = player.GetComponent<CharacterMover>();
     }
     
     private int i = 0;
     private void Update() 
     {
+        detectNoise = player.madeNoise;
         if (canHunt == false || playerMovement.enabled == false)
         {
             agent.speed = patrolSpeed;
@@ -36,14 +39,14 @@ public class EnemyMovement : MonoBehaviour
         else if (canHunt == true)
         {
             agent.speed = huntSpeed;
-            agent.destination = player.transform.position;
+            agent.destination = character.transform.position;
         }       
     }
     
 
     private void OnTriggerStay(Collider other)
     {
-        if ((playerMovement.madeNoise && other.tag == "Player") || other.tag == "TailStink")
+        if ((detectNoise && other.tag == "Player") || other.tag == "TailStink")
         canHunt = true;
     }
     private void OnTriggerExit(Collider other)

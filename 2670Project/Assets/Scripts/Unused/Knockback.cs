@@ -7,32 +7,28 @@ public class Knockback : MonoBehaviour
 {
     public float pushPower = 10.0f;
     private readonly WaitForFixedUpdate wffu = new WaitForFixedUpdate();
-    private CharacterMover mover;
+    public PlayerData player;
     
-    private void Start() 
-    {
-        mover = GetComponent<CharacterMover>(); 
-    }
 
     private IEnumerator KnockBack (ControllerColliderHit hit, Rigidbody body)
     {
-        mover.canControl = false;
+        player.canControl = false;
         var i = 2f;
        
-        mover.movement = -hit.moveDirection;
-        mover.movement.y = -1;
+        player.movement = -hit.moveDirection;
+        player.movement.y = -1;
         while (i > 0)
         {
             yield return wffu;
             i -= 0.1f;
-            mover.controller.Move((mover.movement) * Time.deltaTime);
+            player.controller.Move((player.movement) * Time.deltaTime);
             
             var pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
             var forces = pushDir * pushPower;
             body.AddForce(forces);
         }
-        mover.movement = Vector3.zero;
-        mover.canControl = true;
+        player.movement = Vector3.zero;
+        player.canControl = true;
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)

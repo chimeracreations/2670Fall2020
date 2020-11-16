@@ -141,6 +141,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 3
   bulletSpeed: 1800
+  player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}
   bullet: {fileID: 8837813937507243134}
-  knockbackDuration: 0.25
-  knockbackSpeed: 15

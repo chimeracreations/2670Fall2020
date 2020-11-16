@@ -42592,29 +42592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78902df3f514bb64782ea5128c8c2dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  movement: {x: 0, y: 0, z: 0}
-  canControl: 1
-  gravityForce: 25
-  jumpForce: 12
-  maxJumpCount: 2
-  canJump: 1
-  moveSpeed: 4
-  fastMoveSpeed: 6
-  dashMoveSpeed: 12
-  recoveryMoveSpeed: 2.5
-  diagonalRestraint: 0.85
-  rotateSpeed: 6.5
-  dashCooldown: 0.3
-  dashRest: 0.8
-  attackPause: 1.15
-  TailEmit: 0.6
-  madeNoise: 0
-  isKnockbacked: 0
+  player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}
   bomb: {fileID: 7380053718402745456, guid: 668c599dac386564d9f5c6d06aa2fa9a, type: 3}
-  bombCooldown: 5
-  wallCooldown: 8
-  wallLength: 2
   wall: {fileID: 1756083169797964270, guid: 732aaf26cbbc99249a26b77c07c1c0e8, type: 3}
 --- !u!143 &1954725491
 CharacterController:
@@ -42646,8 +42625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b24b2b803978b429fbe56c96ef2890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
-  numOfHearts: 5
   hearts:
   - {fileID: 1298818513}
   - {fileID: 1579329825}
@@ -42659,6 +42636,7 @@ MonoBehaviour:
   - {fileID: 1025626284}
   - {fileID: 1752587121}
   - {fileID: 2037496041}
+  player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}
 --- !u!114 &1954725493
 MonoBehaviour:
   m_ObjectHideFlags: 0
