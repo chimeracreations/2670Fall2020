@@ -7,7 +7,7 @@ public class LogMove : MonoBehaviour
     public float lifeTime = 20f;
     public float speed = 30f;
 
-    private void Update() 
+    private void FixedUpdate() 
     {
         transform.position = transform.position + new Vector3(0, 0, -speed * Time.deltaTime);
         StartCoroutine(Death());

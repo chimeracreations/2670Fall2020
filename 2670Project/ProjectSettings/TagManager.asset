@@ -10,6 +10,7 @@ TagManager:
   - PlayerModel
   - TailStink
   - Bomb
+  - Platform
   layers:
   - Default
   - TransparentFX

@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void UpdateHearts()
+    public void UpdateHearts()
     {
         if (player.healthValue > player.maxHealth)
         {
@@ -41,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
 
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (player.healthValue == i + .5f)
+            if (player.healthValue <= i + .5f && player.healthValue > i)
             {
                 hearts[i].GetComponent<SpriteAtlasScript>().ChangeSprite("Heart_1");
             }

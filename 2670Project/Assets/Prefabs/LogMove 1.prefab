@@ -105,9 +105,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4934285909133231331}
   - component: {fileID: 2097952668764208533}
+  - component: {fileID: 5202833423898299900}
   m_Layer: 0
   m_Name: LogMove 1
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,3 +142,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 40
   speed: 4
+--- !u!65 &5202833423898299900
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5706564616271322713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4151574, y: 0.15814114, z: 5.7604747}
+  m_Center: {x: -0.017228544, y: 0.64513636, z: -0.016220808}
