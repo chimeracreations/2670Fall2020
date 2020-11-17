@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: player
   m_EditorClassIdentifier: 
   canControl: 1
-  healthValue: 3
+  healthValue: 2.5
   maxHealth: 3
   gravityForce: 25
   jumpForce: 12

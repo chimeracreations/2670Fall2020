@@ -596,10 +596,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 8837813937507243134, guid: 93720ead98e70444998ce640621c6965, type: 3}
   instancer: {fileID: 9025528094531140495}
+  player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}
   speed: 40
   isEntered: 0
   playerTurretPosition: {fileID: 9025528094555053642}
   bulletDelay: 2
+  runawayCheck: {x: 0, y: 0, z: 0}
 --- !u!1 &9025528096353416294
 GameObject:
   m_ObjectHideFlags: 0

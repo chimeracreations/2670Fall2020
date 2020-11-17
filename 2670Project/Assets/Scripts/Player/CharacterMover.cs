@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -198,7 +198,7 @@ public class CharacterMover : MonoBehaviour
                 attackPauseCount = 1f;
 
             }
-            else if (Input.GetButtonDown("Fire1") && deltaAngle > 0 && attackPauseCount > player.attackPause)
+            else if (Input.GetButtonDown("Fire1") && deltaAngle >= 0 && attackPauseCount > player.attackPause)
             {
                 tailCol.enabled = true;
                 tailEmitCount = 0;
