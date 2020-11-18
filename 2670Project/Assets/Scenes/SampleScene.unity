@@ -1467,7 +1467,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56897809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 135.1, y: 0, z: 81.7}
+  m_LocalPosition: {x: 135.1, y: -0.1, z: 81.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 692157029}
@@ -1486,8 +1486,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}
-  riverSpeed: 10
-  damageSpeed: 0.5
+  riverSpeed: 12
+  damageSpeed: 1
 --- !u!65 &56897812
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1499,8 +1499,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 44.674973, y: 6.4933653, z: 207.98352}
-  m_Center: {x: 0.08968353, y: -3.7075715, z: -8.026688}
+  m_Size: {x: 44.674973, y: 6.2778883, z: 207.98352}
+  m_Center: {x: 0.08968353, y: -3.81531, z: -8.026688}
 --- !u!4 &58051961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7290681730557869513, guid: e87354d93e9650b4b90121a36cda129e, type: 3}
@@ -2438,7 +2438,7 @@ GameObject:
   - component: {fileID: 104227394}
   - component: {fileID: 104227395}
   m_Layer: 0
-  m_Name: LogInstancer
+  m_Name: LogInstancer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2473,8 +2473,10 @@ MonoBehaviour:
   log: {fileID: 5706564616271322713, guid: d48217a46812eba4294923756e6c0894, type: 3}
   instancer: {fileID: 104227394}
   time:
-  - 4
-  - 6
+  - 8
+  - 10
+  - 10
+  - 12
 --- !u!1001 &105209405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8982,7 +8984,7 @@ GameObject:
   - component: {fileID: 377043611}
   - component: {fileID: 377043612}
   m_Layer: 0
-  m_Name: LogInstancer (3)
+  m_Name: LogInstancer4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9014,10 +9016,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e73a4ce8509804fbc5f82876e220d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  log: {fileID: 5706564616271322713, guid: d48217a46812eba4294923756e6c0894, type: 3}
+  log: {fileID: 5706564616271322713, guid: 7d93e9684b746854a9a9d0b40f719b5a, type: 3}
   instancer: {fileID: 377043611}
   time:
-  - 4
+  - 18
+  - 16
   - 6
 --- !u!1001 &377490291
 PrefabInstance:
@@ -9950,7 +9953,7 @@ GameObject:
   - component: {fileID: 414877217}
   - component: {fileID: 414877218}
   m_Layer: 0
-  m_Name: LogInstancer (1)
+  m_Name: LogInstancer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9982,11 +9985,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e73a4ce8509804fbc5f82876e220d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  log: {fileID: 5706564616271322713, guid: d48217a46812eba4294923756e6c0894, type: 3}
+  log: {fileID: 5706564616271322713, guid: 816eef996aa5cfc4c84ede82bda46cec, type: 3}
   instancer: {fileID: 414877217}
   time:
-  - 4
-  - 6
+  - 10
+  - 7
+  - 15
+  - 8
 --- !u!1001 &422980308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12609,7 +12614,7 @@ GameObject:
   - component: {fileID: 572371090}
   - component: {fileID: 572371091}
   m_Layer: 0
-  m_Name: LogInstancer (2)
+  m_Name: LogInstancer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12641,11 +12646,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e73a4ce8509804fbc5f82876e220d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  log: {fileID: 5706564616271322713, guid: d48217a46812eba4294923756e6c0894, type: 3}
+  log: {fileID: 5706564616271322713, guid: 5423e6a1854541f448541cba854ce0d8, type: 3}
   instancer: {fileID: 572371090}
   time:
   - 4
+  - 8
   - 6
+  - 7
+  - 5
 --- !u!4 &572803961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6492868615513596028, guid: 1fde46dc4c9460644b17d6aab88584eb, type: 3}
@@ -12822,10 +12830,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.5402978
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.3253524}
 --- !u!23 &578098791
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15809,7 +15817,7 @@ GameObject:
   - component: {fileID: 742990685}
   - component: {fileID: 742990686}
   m_Layer: 0
-  m_Name: LogInstancer (4)
+  m_Name: LogInstancer5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15841,10 +15849,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e73a4ce8509804fbc5f82876e220d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  log: {fileID: 5706564616271322713, guid: d48217a46812eba4294923756e6c0894, type: 3}
+  log: {fileID: 5706564616271322713, guid: 13d5366a01cfedc49848185ca4620e84, type: 3}
   instancer: {fileID: 742990685}
   time:
   - 4
+  - 6
+  - 4
+  - 6
+  - 8
+  - 6
   - 6
 --- !u!4 &743817418 stripped
 Transform:
@@ -31210,7 +31223,7 @@ GameObject:
   - component: {fileID: 1435345582}
   - component: {fileID: 1435345583}
   m_Layer: 0
-  m_Name: LogInstancer (5)
+  m_Name: LogInstancer6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31242,11 +31255,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e73a4ce8509804fbc5f82876e220d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  log: {fileID: 5706564616271322713, guid: d48217a46812eba4294923756e6c0894, type: 3}
+  log: {fileID: 5706564616271322713, guid: 344ba6be06bbca6409508f05fb582863, type: 3}
   instancer: {fileID: 1435345582}
   time:
-  - 4
-  - 6
+  - 7
+  - 10
+  - 15
+  - 8
 --- !u!4 &1436380982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6492868615513596028, guid: 1fde46dc4c9460644b17d6aab88584eb, type: 3}

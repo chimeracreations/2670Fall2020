@@ -24,8 +24,11 @@ public class RiverFlow : MonoBehaviour
 
     private void OnTriggerStay(Collider other) 
     {
-        cc.Move(-playerVelocity * Time.deltaTime);
-        player.healthValue -= damageSpeed * Time.deltaTime;
-        health.UpdateHearts();
+        if (other.tag == "Player")
+        {
+            cc.Move(-playerVelocity * Time.deltaTime);
+            player.healthValue -= damageSpeed * Time.deltaTime;
+            health.UpdateHearts();
+        }
     }
 }

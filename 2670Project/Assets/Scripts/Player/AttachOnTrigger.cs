@@ -2,7 +2,7 @@
 
 public class AttachOnTrigger : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         var otherTag = other.CompareTag("Platform");
         if (otherTag)
