@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: player
   m_EditorClassIdentifier: 
   canControl: 1
-  healthValue: 3
+  healthValue: 2.88
   maxHealth: 3
   gravityForce: 25
   jumpForce: 12
@@ -36,5 +36,5 @@ MonoBehaviour:
   bombCooldown: 5
   wallCooldown: 8
   wallLength: 1.5
-  movement: {x: 0, y: -3, z: 0}
+  movement: {x: 0, y: -3, z: -0.0002918299}
   controller: {fileID: 0}
