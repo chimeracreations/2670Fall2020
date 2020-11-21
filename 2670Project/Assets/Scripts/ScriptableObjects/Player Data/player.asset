@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: player
   m_EditorClassIdentifier: 
   canControl: 1
-  healthValue: 2.88
+  healthValue: 2
   maxHealth: 3
   gravityForce: 25
   jumpForce: 12
@@ -32,9 +32,10 @@ MonoBehaviour:
   madeNoise: 0
   knockbackDuration: 0.4
   immuneDuration: 1.9
-  isKnockbacked: 0
+  isKnockbacked: 1
   bombCooldown: 5
   wallCooldown: 8
   wallLength: 1.5
-  movement: {x: 0, y: -3, z: -0.0002918299}
+  onPlatform: 0
+  movement: {x: 0, y: -3, z: 0}
   controller: {fileID: 0}

@@ -6,6 +6,15 @@ public class TimedOnTriggerEnable : MonoBehaviour
 {
     public float time;
     private WaitForSeconds wfs;
+    private WaitForFixedUpdate wffu;
+
+    private void Start() 
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
 
     private IEnumerator OnTriggerEnter(Collider other) 
     {
@@ -19,8 +28,10 @@ public class TimedOnTriggerEnable : MonoBehaviour
             for (int i = 0; i < transform.childCount; i++)
             {
                 transform.GetChild(i).gameObject.SetActive(false);
+                
             }
-
+            
+        
         }
 
     }

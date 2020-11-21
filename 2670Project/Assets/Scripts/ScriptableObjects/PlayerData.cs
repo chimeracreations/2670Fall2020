@@ -29,6 +29,7 @@ public class PlayerData : ScriptableObject
     public float bombCooldown;
     public float wallCooldown;
     public float wallLength;
+    public bool onPlatform;
     [HideInInspector] public Vector3 movement;
     [HideInInspector] public CharacterController controller;
         
