@@ -285,7 +285,7 @@ public class CharacterMover : MonoBehaviour
     private IEnumerator Wall()
     {
         float i = 0;
-        float timer = .25f;
+        float timer = .16f;
         backTrail.emitting = true;
         while (i <= player.wallLength)
         {
@@ -295,7 +295,7 @@ public class CharacterMover : MonoBehaviour
              if (timer <= 0f)
                 {
                     Instantiate(wall, tailPosition.position, tailPosition.rotation);
-                    timer = 0.5f;
+                    timer = 0.16f;
                 }
         }
         backTrail.emitting = false;

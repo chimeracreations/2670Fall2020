@@ -32,10 +32,10 @@ MonoBehaviour:
   madeNoise: 0
   knockbackDuration: 0.4
   immuneDuration: 1.9
-  isKnockbacked: 1
+  isKnockbacked: 0
   bombCooldown: 5
   wallCooldown: 8
   wallLength: 1.5
   onPlatform: 0
-  movement: {x: 0, y: -3, z: 0}
+  movement: {x: 0, y: -3, z: -0.00007445685}
   controller: {fileID: 0}

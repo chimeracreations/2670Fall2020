@@ -12,7 +12,6 @@ public class PlatformVerticalBehavior : MonoBehaviour
     private void Start() 
     {
         animator = ColliderNRenderer.GetComponent<Animator>();
-       
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -21,7 +20,6 @@ public class PlatformVerticalBehavior : MonoBehaviour
         {
             animator.SetTrigger("raisePlatform");
         }
-
     }
 
     private void OnEnable() 
