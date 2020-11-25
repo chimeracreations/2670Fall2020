@@ -8,6 +8,13 @@ public class PlayerData : ScriptableObject
     public bool canControl;
     public float healthValue;
     public int maxHealth; 
+    public float energyRefillAmount;
+    public float energyRefillMax;
+    public float energyRefillRate;
+    public float energyExtraAmount;
+    public float energyExtraMax;
+    public float energyTotal;
+    public float energyDamage;
     public float gravityForce;
     public float jumpForce;
     public int maxJumpCount;
