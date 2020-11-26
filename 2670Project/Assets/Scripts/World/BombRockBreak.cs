@@ -9,6 +9,7 @@ public class BombRockBreak : MonoBehaviour
     public GameObject heart;
     public GameObject bean;
     public Vector3 offset;
+    private bool hasTriggered = false;
 
     private void Start() 
     {
@@ -16,7 +17,7 @@ public class BombRockBreak : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Bomb")
+        if (other.tag == "Bomb" && hasTriggered == false)
         {
             anim.SetTrigger("bombTrigger");
             if (Random.value >= 0.9f)
@@ -27,6 +28,7 @@ public class BombRockBreak : MonoBehaviour
             {
                 Instantiate(bean, transform.position + offset, transform.rotation);
             }
+            hasTriggered = true;
         }
     }
 }

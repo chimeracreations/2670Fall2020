@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: player
   m_EditorClassIdentifier: 
   canControl: 1
-  healthValue: 3
-  maxHealth: 3
-  energyRefillAmount: 19.018963
+  healthValue: 3.88
+  maxHealth: 4
+  energyRefillAmount: 30
   energyRefillMax: 30
   energyRefillRate: 3
   energyExtraAmount: 70
   energyExtraMax: 70
-  energyTotal: 89.01897
-  energyDamage: 10.925643
+  energyTotal: 100
+  energyDamage: 0
   gravityForce: 25
   jumpForce: 12
   maxJumpCount: 2
@@ -44,5 +44,5 @@ MonoBehaviour:
   wallCooldown: 8
   wallLength: 1.5
   onPlatform: 0
-  movement: {x: 0, y: -3, z: 0}
+  movement: {x: 0, y: -2.9999993, z: 0.0019219748}
   controller: {fileID: 0}
