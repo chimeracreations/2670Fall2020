@@ -11,7 +11,10 @@ public class BushBreak : MonoBehaviour
     private Renderer[] colors;
     private readonly WaitForFixedUpdate wffu = new WaitForFixedUpdate();
     public bool isMushroom;
-
+    public GameObject heart;
+    public GameObject bean;
+    public Vector3 offset;
+ 
     private void Start() 
     {
         animator = GetComponent<Animator>();  
@@ -23,6 +26,14 @@ public class BushBreak : MonoBehaviour
     {
         if (other.tag == "TailStink")
         {
+            if (Random.value >= 0.9f)
+            {
+                Instantiate(heart, transform.position + offset, transform.rotation);
+            }
+            if (Random.value <= 0.1f)
+            {
+                Instantiate(bean, transform.position + offset, transform.rotation);
+            }
             animator.SetTrigger("bushDestroy");
             StartCoroutine(ColorChange());
         }

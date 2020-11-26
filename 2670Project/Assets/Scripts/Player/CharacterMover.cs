@@ -85,11 +85,12 @@ public class CharacterMover : MonoBehaviour
         
             //MOVEMENT
             //If canDash is true and Fire2 is pressed, sets dashCount to a positive number to allow the next if statement to trigger
-            if (Input.GetButtonDown("Fire2") && canDash) 
+            if (Input.GetButtonDown("Fire2") && canDash && player.energyTotal >= 5f) 
             {
                 dashCount = dashCount + 1 * Time.deltaTime;
                 dashTrail.emitting = true;
                 player.madeNoise = true;
+                player.energyDamage += 5f;
             }
 
             //Moves the character at dash speed for a set time. dashCooldown is not 1 value equals 1 second but should run off real time
@@ -114,6 +115,7 @@ public class CharacterMover : MonoBehaviour
                 player.movement.x = Input.GetAxis("Horizontal") * player.recoveryMoveSpeed;
                 player.movement.z = Input.GetAxis("Vertical") * player.recoveryMoveSpeed;
                 dashRestCount = dashRestCount + 1 * Time.deltaTime;
+                player.energyRefillRate = 0f;
                 if (dashRestCount >= player.dashRest)
                 {
                     canDash = true;
@@ -126,12 +128,14 @@ public class CharacterMover : MonoBehaviour
                 player.movement.x = Input.GetAxis("Horizontal") * player.fastMoveSpeed;
                 player.movement.z = Input.GetAxis("Vertical") * player.fastMoveSpeed;
                 player.madeNoise = true;
+                player.energyRefillRate = 1f;
             }
             //Regular movement
             else if (canDash)
             {
                 player.movement.x = Input.GetAxis("Horizontal") * player.moveSpeed;
                 player.movement.z = Input.GetAxis("Vertical") * player.moveSpeed;
+                player.energyRefillRate = 3f;
             }
 
             //ROTATE
@@ -190,20 +194,22 @@ public class CharacterMover : MonoBehaviour
 
             //ATTACK
             //Attack animation after attack pause count 
-            if (Input.GetButtonDown("Fire1") && deltaAngle <= 0 && attackPauseCount > player.attackPause)
+            if (Input.GetButtonDown("Fire1") && deltaAngle <= 0 && attackPauseCount > player.attackPause && player.energyTotal >= 5f)
             {
                 tailCol.enabled = true;
                 tailEmitCount = 0;
                 animator.SetTrigger("playerAttackR");
                 attackPauseCount = 1f;
+                player.energyDamage += 5f;
 
             }
-            else if (Input.GetButtonDown("Fire1") && deltaAngle >= 0 && attackPauseCount > player.attackPause)
+            else if (Input.GetButtonDown("Fire1") && deltaAngle >= 0 && attackPauseCount > player.attackPause && player.energyTotal >= 5f)
             {
                 tailCol.enabled = true;
                 tailEmitCount = 0;
                 animator.SetTrigger("playerAttackL");
                 attackPauseCount = 1f;
+                player.energyDamage += 5f;
 
             }
             tailEmitCount = tailEmitCount + 1 * Time.deltaTime;
@@ -221,18 +227,20 @@ public class CharacterMover : MonoBehaviour
             //BOMBS
             bombCooldownCount = bombCooldownCount + Time.deltaTime;
 
-            if (Input.GetButtonDown("Fire4") && bombCooldownCount >= player.bombCooldown)
+            if (Input.GetButtonDown("Fire4") && bombCooldownCount >= player.bombCooldown && player.energyTotal >= 35f)
             {
                 Instantiate(bomb, tailPosition.position, tailPosition.rotation);
                 bombCooldownCount = 0f;
+                player.energyDamage += 35f;
             }
 
             //STINK WALL
             wallCooldownCount = wallCooldownCount + Time.deltaTime;
-            if (Input.GetButtonDown("Fire5") && wallCooldownCount >= player.wallCooldown)
+            if (Input.GetButtonDown("Fire5") && wallCooldownCount >= player.wallCooldown && player.energyTotal >= 30f)
             {
                 StartCoroutine(Wall());
                 wallCooldownCount = 0f;
+                player.energyDamage += 30f;
             }
         
             //THE WORK
