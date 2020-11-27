@@ -12,6 +12,7 @@ public class TriggerDialogueEvents : MonoBehaviour
      public Text obj;
      private int wait;
      private float sizeOfList;
+     [SerializeField] private UnityEvent Ability;
 
      private void Start()
      {
@@ -24,6 +25,7 @@ public class TriggerDialogueEvents : MonoBehaviour
      {
         if (other.tag == "TailStink")
           {    
+               Ability.Invoke();
                StopCoroutine(dialogueRun());
                StartCoroutine(dialogueRun());
           }

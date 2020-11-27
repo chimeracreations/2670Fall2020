@@ -26,11 +26,12 @@ public class BushBreak : MonoBehaviour
     {
         if (other.tag == "TailStink")
         {
-            if (Random.value >= 0.9f)
+            var dropRandom = Random.value;
+            if (dropRandom >= 0.9f)
             {
                 Instantiate(heart, transform.position + offset, transform.rotation);
             }
-            if (Random.value <= 0.1f)
+            if (dropRandom <= 0.1f)
             {
                 Instantiate(bean, transform.position + offset, transform.rotation);
             }

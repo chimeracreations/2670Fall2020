@@ -16,7 +16,7 @@ public class PlatformVerticalBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "TailStink")
+        if (other.tag == "TailStink" && player.canPlatform == true)
         {
             animator.SetTrigger("raisePlatform");
         }

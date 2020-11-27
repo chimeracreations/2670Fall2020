@@ -227,7 +227,7 @@ public class CharacterMover : MonoBehaviour
             //BOMBS
             bombCooldownCount = bombCooldownCount + Time.deltaTime;
 
-            if (Input.GetButtonDown("Fire4") && bombCooldownCount >= player.bombCooldown && player.energyTotal >= 35f)
+            if (Input.GetButtonDown("Fire4") && bombCooldownCount >= player.bombCooldown && player.energyTotal >= 35f && player.canBomb == true)
             {
                 Instantiate(bomb, tailPosition.position, tailPosition.rotation);
                 bombCooldownCount = 0f;
@@ -236,7 +236,7 @@ public class CharacterMover : MonoBehaviour
 
             //STINK WALL
             wallCooldownCount = wallCooldownCount + Time.deltaTime;
-            if (Input.GetButtonDown("Fire5") && wallCooldownCount >= player.wallCooldown && player.energyTotal >= 30f)
+            if (Input.GetButtonDown("Fire5") && wallCooldownCount >= player.wallCooldown && player.energyTotal >= 30f && player.canWall == true)
             {
                 StartCoroutine(Wall());
                 wallCooldownCount = 0f;

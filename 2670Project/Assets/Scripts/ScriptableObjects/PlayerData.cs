@@ -6,6 +6,11 @@ using UnityEngine.UI;
 public class PlayerData : ScriptableObject
 {
     public bool canControl;
+    public bool canTorch;
+    public bool canPlatform;
+    public bool canJump;
+    public bool canBomb;
+    public bool canWall;
     public float healthValue;
     public int maxHealth; 
     public float energyRefillAmount;
@@ -18,7 +23,6 @@ public class PlayerData : ScriptableObject
     public float gravityForce;
     public float jumpForce;
     public int maxJumpCount;
-    public bool canJump;
     public float moveSpeed;
     public float fastMoveSpeed;
     public float dashMoveSpeed;
@@ -41,8 +45,35 @@ public class PlayerData : ScriptableObject
     [HideInInspector] public CharacterController controller;
         
 
+    public void SetJump(bool set)
+    {
+        canJump = set;
+    }
 
+    public void SetTorch(bool set)
+    {
+        canTorch = set;
+    }
 
+    public void SetPlatform(bool set)
+    {
+        canPlatform = set;
+    }
+
+    public void SetBomb(bool set)
+    {
+        canBomb = set;
+    }
+
+    public void SetWall(bool set)
+    {
+        canWall = set;
+    }
+
+    public void SetJumpCount(int set)
+    {
+        maxJumpCount = set;
+    }
     
 }
 

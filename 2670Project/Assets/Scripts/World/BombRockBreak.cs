@@ -20,11 +20,12 @@ public class BombRockBreak : MonoBehaviour
         if (other.tag == "Bomb" && hasTriggered == false)
         {
             anim.SetTrigger("bombTrigger");
-            if (Random.value >= 0.9f)
+            var dropRandom = Random.value;
+            if (dropRandom >= 0.9f)
             {
                 Instantiate(heart, transform.position + offset, transform.rotation);
             }
-            if (Random.value <= 0.3f)
+            if (dropRandom <= 0.3f)
             {
                 Instantiate(bean, transform.position + offset, transform.rotation);
             }
