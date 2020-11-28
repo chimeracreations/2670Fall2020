@@ -112,6 +112,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 60
   player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}
+  torchCount: {fileID: 11400000, guid: 982fce04afc0d0c42955e64420ec2eac, type: 2}
+  activateEvent: 0
+  eventCount: 2
+  torchEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  torchEventTwo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5374170145166739019
 GameObject:
   m_ObjectHideFlags: 0

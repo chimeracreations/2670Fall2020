@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canControl: 1
   canTorch: 1
-  canPlatform: 0
+  canPlatform: 1
   canJump: 0
   canBomb: 0
   canWall: 0
-  healthValue: 3
+  healthValue: 2
   maxHealth: 3
   energyRefillAmount: 30
   energyRefillMax: 30
