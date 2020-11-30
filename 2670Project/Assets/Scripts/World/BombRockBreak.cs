@@ -15,6 +15,16 @@ public class BombRockBreak : MonoBehaviour
     {
         anim = GetComponent<Animator>(); 
     }
+    public void CallBombBreak()
+    {
+        anim.SetTrigger("bombTrigger");
+    }
+
+    public void DestroyBombRock()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other) 
     {
         if (other.tag == "Bomb" && hasTriggered == false)

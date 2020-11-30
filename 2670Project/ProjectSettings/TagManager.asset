@@ -11,6 +11,7 @@ TagManager:
   - TailStink
   - Bomb
   - Platform
+  - Torch
   layers:
   - Default
   - TransparentFX

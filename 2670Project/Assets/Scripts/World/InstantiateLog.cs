@@ -7,25 +7,38 @@ public class InstantiateLog : MonoBehaviour
     public GameObject log;
     public Transform instancer;
     public float[] time;
-    private WaitForSeconds wfs;
+    private int count = 0;
+    private float countToSeconds;
+    private int i = 0;
 
-
-    // Start is called before the first frame update
-    private void OnEnable()
+    private void FixedUpdate()
     {
-        StartCoroutine(LogSpawn());
-    }
-
-    private IEnumerator LogSpawn()
-    {
-        while (instancer)
+        count++;
+        countToSeconds = (count / 50f);
+        if (i < time.Length)
         {
-            for (int i = 0; i < time.Length; i++)
+            if (time[i] == countToSeconds)
             {
-                yield return wfs = new WaitForSeconds(time[i]);
-                Instantiate(log, instancer.position, instancer.rotation);
+                var thisLog = Instantiate(log, instancer.position, instancer.rotation);
+                thisLog.transform.parent = gameObject.transform;
+                count = 0;
+                i++;
             }
         }
     }
+
+    // private IEnumerator LogSpawn()
+    // {
+    //     int i = 0;
+    //     while (i < time.Length)
+    //     {
+    //         for (i = 0; i < time.Length; i++)
+    //         {
+    //             yield return wfs = new WaitForSeconds(time[i]);
+    //             var thisLog = Instantiate(log, instancer.position, instancer.rotation);
+    //             thisLog.transform.parent = gameObject.transform;
+    //         }
+    //     }
+    // }
 
 }

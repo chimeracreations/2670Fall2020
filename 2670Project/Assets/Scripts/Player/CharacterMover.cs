@@ -32,6 +32,7 @@ public class CharacterMover : MonoBehaviour
     private float bombCooldownCount = 5f;
     private float wallCooldownCount = 8f;
     public GameObject wall;
+    public GameObject confused;
     
     
     void Start()
@@ -54,11 +55,25 @@ public class CharacterMover : MonoBehaviour
         tailEmitCount = 1;
         tailCol = tailStink.GetComponent<Collider>();
         tailCol.enabled = false;
+        confused.SetActive(false);
     }
     
     void Update()
     {   
         player.madeNoise = false;
+        float horizontalInput = Input.GetAxis ("Horizontal");
+        float verticalInput = Input.GetAxis ("Vertical");
+        if (player.reversedMove)
+        {
+            horizontalInput = -horizontalInput;
+            verticalInput = -verticalInput;
+            confused.SetActive(true);
+        }
+        else
+        {
+            confused.SetActive(false);
+        }
+        
         if (player.canControl == true)
         {
             //Constant increasing downward movement for gravity  
@@ -96,8 +111,8 @@ public class CharacterMover : MonoBehaviour
             //Moves the character at dash speed for a set time. dashCooldown is not 1 value equals 1 second but should run off real time
             else if (dashCount > 0 && dashCount < player.dashCooldown)
             {
-                player.movement.x = Input.GetAxis("Horizontal") * player.dashMoveSpeed;
-                player.movement.z = Input.GetAxis("Vertical") * player.dashMoveSpeed;
+                player.movement.x = horizontalInput * player.dashMoveSpeed;
+                player.movement.z = verticalInput * player.dashMoveSpeed;
                 dashCount = dashCount + 1 * Time.deltaTime;
                 player.madeNoise = true;
             }
@@ -112,8 +127,8 @@ public class CharacterMover : MonoBehaviour
 
             else if (canDash == false)
             {
-                player.movement.x = Input.GetAxis("Horizontal") * player.recoveryMoveSpeed;
-                player.movement.z = Input.GetAxis("Vertical") * player.recoveryMoveSpeed;
+                player.movement.x = horizontalInput * player.recoveryMoveSpeed;
+                player.movement.z = verticalInput * player.recoveryMoveSpeed;
                 dashRestCount = dashRestCount + 1 * Time.deltaTime;
                 player.energyRefillRate = 0f;
                 if (dashRestCount >= player.dashRest)
@@ -125,16 +140,16 @@ public class CharacterMover : MonoBehaviour
             //Fast movement
             else if (Input.GetButton("Fire3") && canDash)
             {
-                player.movement.x = Input.GetAxis("Horizontal") * player.fastMoveSpeed;
-                player.movement.z = Input.GetAxis("Vertical") * player.fastMoveSpeed;
+                player.movement.x = horizontalInput * player.fastMoveSpeed;
+                player.movement.z = verticalInput * player.fastMoveSpeed;
                 player.madeNoise = true;
                 player.energyRefillRate = 1f;
             }
             //Regular movement
             else if (canDash)
             {
-                player.movement.x = Input.GetAxis("Horizontal") * player.moveSpeed;
-                player.movement.z = Input.GetAxis("Vertical") * player.moveSpeed;
+                player.movement.x = horizontalInput * player.moveSpeed;
+                player.movement.z = verticalInput * player.moveSpeed;
                 player.energyRefillRate = 3f;
             }
 
@@ -144,43 +159,43 @@ public class CharacterMover : MonoBehaviour
             {    
                 float angleOne = rotateAngle;
                 //Player rotation based off input
-                if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") > 0)
+                if (horizontalInput > 0 && verticalInput > 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, 45, (player.rotateSpeed * Time.deltaTime));
                     player.movement.x = player.movement.x * player.diagonalRestraint;
                     player.movement.z = player.movement.z * player.diagonalRestraint;
                 }
-                if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") > 0)
+                if (horizontalInput < 0 && verticalInput > 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, -45, (player.rotateSpeed * Time.deltaTime));
                     player.movement.x = player.movement.x * player.diagonalRestraint;
                     player.movement.z = player.movement.z * player.diagonalRestraint;
                 }
-                if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") < 0)
+                if (horizontalInput > 0 && verticalInput < 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, 135, (player.rotateSpeed * Time.deltaTime));
                     player.movement.x = player.movement.x * player.diagonalRestraint;
                     player.movement.z = player.movement.z * player.diagonalRestraint;
                 }
-                if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") < 0)
+                if (horizontalInput < 0 && verticalInput < 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, -135, (player.rotateSpeed * Time.deltaTime));
                     player.movement.x = player.movement.x * player.diagonalRestraint;
                     player.movement.z = player.movement.z * player.diagonalRestraint;
                 }
-                if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") == 0)
+                if (horizontalInput > 0 && verticalInput == 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, 90, (player.rotateSpeed * Time.deltaTime));
                 }
-                if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") == 0)
+                if (horizontalInput < 0 && verticalInput == 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, -90, (player.rotateSpeed * Time.deltaTime));
                 }
-                if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") == 0)
+                if (verticalInput > 0 && horizontalInput == 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, 0, (player.rotateSpeed * Time.deltaTime));
                 }
-                if (Input.GetAxis("Vertical") < 0 && Input.GetAxis("Horizontal") == 0)
+                if (verticalInput < 0 && horizontalInput == 0)
                 {
                     rotateAngle = Mathf.LerpAngle(rotateAngle, 180, (player.rotateSpeed * Time.deltaTime));
                 }

@@ -15,18 +15,19 @@ MonoBehaviour:
   canControl: 1
   canTorch: 1
   canPlatform: 1
-  canJump: 0
+  canJump: 1
   canBomb: 0
-  canWall: 0
-  healthValue: 2
+  canWall: 1
+  reversedMove: 0
+  healthValue: 1.5
   maxHealth: 3
-  energyRefillAmount: 30
+  energyRefillAmount: 25.971394
   energyRefillMax: 30
   energyRefillRate: 3
   energyExtraAmount: 70
   energyExtraMax: 70
-  energyTotal: 100
-  energyDamage: 0
+  energyTotal: 95.97139
+  energyDamage: 3.9842162
   gravityForce: 25
   jumpForce: 12
   maxJumpCount: 2
@@ -43,7 +44,7 @@ MonoBehaviour:
   madeNoise: 0
   knockbackDuration: 0.4
   immuneDuration: 1.9
-  isKnockbacked: 0
+  isKnockbacked: 1
   bombCooldown: 5
   wallCooldown: 8
   wallLength: 1.5

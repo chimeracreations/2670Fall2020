@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject[] hearts;
     public PlayerData player;
     private Respawn respawn;
+    private WaitForSeconds wfs = new WaitForSeconds(2f);
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,16 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if ((other.tag == "Enemy" || other.tag == "Bomb") && player.isKnockbacked == false)
+        if ((other.tag == "Enemy") && player.isKnockbacked == false)
+        {
+            player.healthValue -= other.gameObject.GetComponent<EnemyStats>().damageAmount;
+            if( other.gameObject.GetComponent<EnemyStats>().canConfuse == true)
+            {
+                StartCoroutine(confused());
+            }
+            UpdateHearts();
+        }
+        if (other.tag == "Bomb" && player.isKnockbacked == false)
         {
             player.healthValue -= 0.5f;
             UpdateHearts();
@@ -65,5 +75,12 @@ public class PlayerHealth : MonoBehaviour
                 hearts[i].GetComponent<Image>().enabled = false;
             }
         }
+    }
+
+    public IEnumerator confused()
+    {
+        player.reversedMove = true;
+        yield return wfs;
+        player.reversedMove = false;
     }
 }

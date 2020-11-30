@@ -9,7 +9,7 @@ public class MiniBossStartScene : MonoBehaviour
     public PlayerData player;
     private Animator animator;
     private WaitForSeconds wfs;
-    public IntData torchStart;
+    public IntData torchStart, torchUnder;
     [SerializeField] private UnityEvent callDialogue1, callDialogue2;
 
     // Start is called before the first frame update
@@ -17,6 +17,7 @@ public class MiniBossStartScene : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         torchStart.value = 0;
+        torchUnder.value = 0;
     }
 
 
@@ -33,6 +34,7 @@ public class MiniBossStartScene : MonoBehaviour
         callDialogue1.Invoke();
         yield return wfs = new WaitForSeconds(time);
         callDialogue2.Invoke();
+        yield return wfs = new WaitForSeconds(time);
         yield return wfs = new WaitForSeconds(time);
         player.canControl = true;
         Destroy(gameObject);

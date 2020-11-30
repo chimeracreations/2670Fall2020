@@ -11,6 +11,7 @@ public class PlayerData : ScriptableObject
     public bool canJump;
     public bool canBomb;
     public bool canWall;
+    public bool reversedMove;
     public float healthValue;
     public int maxHealth; 
     public float energyRefillAmount;

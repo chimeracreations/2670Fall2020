@@ -5,8 +5,6 @@ using UnityEngine.Events;
 public class IntData : ScriptableObject
 {
     public int value;
-    [SerializeField] private UnityEvent startScene;
-
 
     public void AddToValue()
     {
