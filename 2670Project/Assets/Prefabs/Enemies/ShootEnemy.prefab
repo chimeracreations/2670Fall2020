@@ -131,9 +131,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 0
   canConfuse: 0
-  EnemyMaxHeath: 0
-  EnemySpeed: 0
+  enemyMaxHeath: 0
+  enemySpeed: 0
   canShoot: 0
+  enemyPatrolSpeed: 0
   enemy: {fileID: 11400000, guid: a4a8e1d03d2788d4fb896e5a691b5a46, type: 2}
 --- !u!114 &50764672462549581
 MonoBehaviour:
@@ -153,6 +154,9 @@ MonoBehaviour:
   maxHealth: 3
   revealed: 0
   data: {fileID: 11400000, guid: 3974d391966832a4e9819eab1a32aee4, type: 2}
+  heart: {fileID: 1140104133924540200, guid: 5f7c641aa994b1d44b491932ae5dc249, type: 3}
+  bean: {fileID: 6770292169647646549, guid: aedfc706871f77e4f81b50284f1ab109, type: 3}
+  offset: {x: 0, y: -1, z: 0}
 --- !u!1 &3205838683363510873
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +488,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 12.95
+  m_Radius: 14
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6958643792341229834
 MonoBehaviour:
@@ -503,14 +507,13 @@ MonoBehaviour:
   canHunt: 0
   patrolPoints:
   - {x: -9.2, y: 0.8891983, z: 60}
-  patrolSpeed: 2
-  huntSpeed: 3.5
   runAwayDistance: 5
   player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}
   exclamation: {fileID: 4284417075831536037}
   question: {fileID: 9063729305042187173}
   instancer: {fileID: 4741115291014241021}
   bullet: {fileID: 8837813937507243134, guid: ebcb5a6461c0449499970e6f94174ca7, type: 3}
+  data: {fileID: 11400000, guid: 3974d391966832a4e9819eab1a32aee4, type: 2}
 --- !u!1 &6958643792419840335
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +563,7 @@ NavMeshAgent:
   m_Speed: 4.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 240
   m_StoppingDistance: 1.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -595,7 +598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6958643792574628103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6958643792341229835}
@@ -612,7 +615,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6.18
+  m_Radius: 3.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6958643792574628100
 MonoBehaviour:

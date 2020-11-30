@@ -19,6 +19,9 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
     private Renderer[] colorAll;
     public bool revealed;
     public EnemyData data;
+    public GameObject heart;
+    public GameObject bean;
+    public Vector3 offset;
 
 
     private void Start() 
@@ -29,13 +32,13 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
         color = colorAll[1].material.color;
         alphaColor = gameObject.GetComponent<MeshRenderer>().material.color;
         betaColor = gameObject.GetComponent<MeshRenderer>().material.color;
-        betaColor.a = 1;
+        betaColor.a = 0.75f;
     }
 
     private void OnEnable()
     {
         revealed = false;
-        health = data.EnemyMaxHeath;
+        health = data.enemyMaxHeath;
     }
 
     private void Update() 
@@ -70,7 +73,7 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
                 {
                     color.a = .4f;
                 }
-                else color.a = 1f;
+                else color.a = 0.75f;
                 for (int x = 0; x <= transform.childCount; x++)
                     {
                         colorAll[x].material.color = color;
@@ -82,6 +85,15 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
             if (health <= 0f)
             {
                 enemy.SetActive(false);
+                var dropRandom = Random.value;
+                if (dropRandom >= 0.9f)
+                {
+                    Instantiate(heart, transform.position + offset, transform.rotation);
+                }
+                if (dropRandom <= 0.1f)
+                {
+                    Instantiate(bean, transform.position + offset, transform.rotation);
+                }
             } 
         }
     }

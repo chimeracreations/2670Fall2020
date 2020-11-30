@@ -6,18 +6,20 @@ public class EnemyStats : MonoBehaviour
 {
     public float damageAmount;
     public bool canConfuse;
-    public float EnemyMaxHeath;
-    public float EnemySpeed;
+    public float enemyMaxHeath;
+    public float enemySpeed;
     public bool canShoot;
+    public float enemyPatrolSpeed;
     public EnemyData enemy;
 
     void OnEnable()
     {   
        damageAmount = enemy.damageAmount;
        canConfuse = enemy.canConfuse;
-       EnemyMaxHeath = enemy.EnemyMaxHeath;
-       EnemySpeed = enemy.EnemySpeed;
+       enemyMaxHeath = enemy.enemyMaxHeath;
+       enemySpeed = enemy.enemySpeed;
        canShoot = enemy.canShoot;
+       enemyPatrolSpeed = enemy.enemyPatrolSpeed;
     }
 
 }

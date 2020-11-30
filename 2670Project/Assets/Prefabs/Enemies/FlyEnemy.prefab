@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3066739914235534271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3066739915480560774}
@@ -136,7 +136,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4.5
+  m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3066739915121430014
 GameObject:
@@ -252,9 +252,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 0.5
   canConfuse: 1
-  EnemyMaxHeath: 2
-  EnemySpeed: 5.5
+  enemyMaxHeath: 0
+  enemySpeed: 0
   canShoot: 0
+  enemyPatrolSpeed: 0
   enemy: {fileID: 11400000, guid: 6963f7fee6397334ca5d6b60228a715f, type: 2}
 --- !u!114 &3066739915121430003
 MonoBehaviour:
@@ -274,6 +275,9 @@ MonoBehaviour:
   maxHealth: 2
   revealed: 0
   data: {fileID: 11400000, guid: 6963f7fee6397334ca5d6b60228a715f, type: 2}
+  heart: {fileID: 1140104133924540200, guid: 5f7c641aa994b1d44b491932ae5dc249, type: 3}
+  bean: {fileID: 6770292169647646549, guid: aedfc706871f77e4f81b50284f1ab109, type: 3}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!54 &3066739915121430000
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -605,7 +609,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 11
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3066739915480560889
 MonoBehaviour:
@@ -625,11 +629,10 @@ MonoBehaviour:
   patrolPoints:
   - {x: -10, y: 0.8891983, z: 11.84}
   - {x: 10, y: 0.8891983, z: 11.84}
-  patrolSpeed: 2
-  huntSpeed: 5.5
   player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}
   exclamation: {fileID: 3066739915476564494}
   question: {fileID: 3066739915438825748}
+  data: {fileID: 11400000, guid: 6963f7fee6397334ca5d6b60228a715f, type: 2}
 --- !u!1 &3066739915487066979
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 0.5
   canConfuse: 1
-  EnemyMaxHeath: 2
-  EnemySpeed: 5.5
+  enemyMaxHeath: 2
+  enemySpeed: 5.5
+  enemyPatrolSpeed: 2
   canShoot: 0

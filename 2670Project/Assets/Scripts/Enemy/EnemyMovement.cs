@@ -12,8 +12,8 @@ public class EnemyMovement : MonoBehaviour
     private GameObject character;
     public bool canHunt;
     public List<Vector3> patrolPoints;
-    public float patrolSpeed = 2f;
-    public float huntSpeed = 3.5f;
+    private float patrolSpeed;
+    private float huntSpeed;
     public PlayerData player;
     private bool detectNoise;
     public GameObject exclamation;
@@ -22,10 +22,13 @@ public class EnemyMovement : MonoBehaviour
     private bool wasShocked;
     private float count;
     private bool detected;
+    public EnemyData data;
  
 
     private void Start()
     {
+        huntSpeed = data.enemySpeed;
+        patrolSpeed = data.enemyPatrolSpeed;
         character = GameObject.FindWithTag("Player");
         agent = enemy.GetComponent<NavMeshAgent>();
     }
