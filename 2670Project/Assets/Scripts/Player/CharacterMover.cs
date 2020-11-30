@@ -60,6 +60,11 @@ public class CharacterMover : MonoBehaviour
     
     void Update()
     {   
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale == 1) Time.timeScale = 0;
+            else if (Time.timeScale == 0) Time.timeScale = 1;
+        }
         player.madeNoise = false;
         float horizontalInput = Input.GetAxis ("Horizontal");
         float verticalInput = Input.GetAxis ("Vertical");

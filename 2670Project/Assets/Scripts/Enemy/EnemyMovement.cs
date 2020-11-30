@@ -47,6 +47,7 @@ public class EnemyMovement : MonoBehaviour
             if (agent.pathPending || !(agent.remainingDistance < 2f)) return;
             agent.destination = patrolPoints[i];
             i = (i + 1) % patrolPoints.Count;
+            agent.isStopped = false;
         }
         else if (canHunt == true)
         {
@@ -67,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
                 count += Time.deltaTime;
                 exclamation.SetActive(true);
                 agent.isStopped = true;
-                if (count >= 2.5f)
+                if (count >= 3f)
                 {
                     agent.isStopped = false;
                     exclamation.SetActive(false);
@@ -88,7 +89,7 @@ public class EnemyMovement : MonoBehaviour
                 count += Time.deltaTime;
                 exclamation.SetActive(true);
                 agent.isStopped = true;
-                if (count >= 2.5f)
+                if (count >= 3f)
                 {
                     agent.isStopped = false;
                     exclamation.SetActive(false);

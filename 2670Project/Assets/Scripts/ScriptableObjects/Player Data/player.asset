@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: player
   m_EditorClassIdentifier: 
   canControl: 1
-  canTorch: 1
-  canPlatform: 1
-  canJump: 1
+  canTorch: 0
+  canPlatform: 0
+  canJump: 0
   canBomb: 0
-  canWall: 1
+  canWall: 0
   reversedMove: 0
-  healthValue: 2
+  healthValue: 3
   maxHealth: 3
-  energyRefillAmount: 30
+  energyRefillAmount: 8.266928
   energyRefillMax: 30
   energyRefillRate: 3
-  energyExtraAmount: 70
+  energyExtraAmount: 47.629494
   energyExtraMax: 70
-  energyTotal: 100
-  energyDamage: 0
+  energyTotal: 55.896423
+  energyDamage: 21.704256
   gravityForce: 25
   jumpForce: 12
   maxJumpCount: 2
@@ -44,7 +44,7 @@ MonoBehaviour:
   madeNoise: 0
   knockbackDuration: 0.4
   immuneDuration: 1.9
-  isKnockbacked: 0
+  isKnockbacked: 1
   bombCooldown: 5
   wallCooldown: 8
   wallLength: 1.5

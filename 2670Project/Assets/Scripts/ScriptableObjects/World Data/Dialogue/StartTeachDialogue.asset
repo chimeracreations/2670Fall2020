@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0bd3014dd6d8f44921819795281960, type: 3}
+  m_Name: StartTeachDialogue
+  m_EditorClassIdentifier: 
+  stringList:
+  - Use your tail to light the torches.
+  - Enemy ghosts are revealed in the light.
+  - Using your tail to light a torch doesn't make sense you say?
+  - Quit dawdling and help me find the rest of our critter crew!
