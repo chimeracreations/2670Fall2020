@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if ((other.tag == "Enemy") && player.isKnockbacked == false)
+        if ((other.tag == "Enemy" || other.tag == "EnemyAttack") && player.isKnockbacked == false)
         {
             player.healthValue -= other.gameObject.GetComponent<EnemyStats>().damageAmount;
             if( other.gameObject.GetComponent<EnemyStats>().canConfuse == true)

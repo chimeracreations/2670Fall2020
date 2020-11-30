@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6097a3c596346674f8981bd6aecdb9d4, type: 2}
+  - {fileID: 2100000, guid: 6e700e2fcd6d8a2428d50266ed4d5087, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -203,7 +203,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6097a3c596346674f8981bd6aecdb9d4, type: 2}
+  - {fileID: 2100000, guid: 6e700e2fcd6d8a2428d50266ed4d5087, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -349,7 +349,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6097a3c596346674f8981bd6aecdb9d4, type: 2}
+  - {fileID: 2100000, guid: 6e700e2fcd6d8a2428d50266ed4d5087, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -630,7 +630,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}
   exclamation: {fileID: 3066739915476564494}
   question: {fileID: 3066739915438825748}
-  count: 0
 --- !u!1 &3066739915487066979
 GameObject:
   m_ObjectHideFlags: 0

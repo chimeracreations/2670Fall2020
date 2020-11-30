@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
     public GameObject question;
     private WaitForSeconds wfs = new WaitForSeconds(1.5f);
     private bool wasShocked;
-    public float count;
+    private float count;
     private bool detected;
  
 
@@ -77,7 +77,6 @@ public class EnemyMovement : MonoBehaviour
                     detected = false;
                 }
             }
-
             else
             {
               canHunt = true;  
@@ -117,4 +116,6 @@ public class EnemyMovement : MonoBehaviour
             detected = false;
         }
     }
+
+
 }

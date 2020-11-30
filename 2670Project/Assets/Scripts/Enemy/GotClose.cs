@@ -19,5 +19,4 @@ public class GotClose : MonoBehaviour
         enemyFarCollider.canHunt = true;
     }
 
-
 }

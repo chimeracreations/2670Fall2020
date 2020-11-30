@@ -15,6 +15,7 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
     private float health;
     private Color color;
     private Color alphaColor;
+    private Color betaColor;
     private Renderer[] colorAll;
     public bool revealed;
     public EnemyData data;
@@ -27,6 +28,8 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
         colorAll = GetComponentsInChildren<Renderer>();
         color = colorAll[1].material.color;
         alphaColor = gameObject.GetComponent<MeshRenderer>().material.color;
+        betaColor = gameObject.GetComponent<MeshRenderer>().material.color;
+        betaColor.a = 1;
     }
 
     private void OnEnable()
@@ -81,5 +84,33 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
                 enemy.SetActive(false);
             } 
         }
+    }
+
+    public void Reveal()
+    {
+        revealed = true;
+        {
+            StartCoroutine(MakeAppear());
+        }
+        if (revealed == false) 
+        {
+            StopCoroutine(MakeAppear());    
+        }
+
+    }
+
+    public IEnumerator MakeAppear()
+    {
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.Lerp(GetComponent<MeshRenderer>().material.color, betaColor, 1 * Time.deltaTime);
+        for (int x = 0; x <= transform.childCount; x++)
+        {
+            colorAll[x].material.color = Color.Lerp(enemy.GetComponent<MeshRenderer>().material.color, betaColor, 1 * Time.deltaTime);
+        }
+        yield return wffu;
+    }
+
+    public void Hide()
+    {
+        revealed = false;
     }
 }

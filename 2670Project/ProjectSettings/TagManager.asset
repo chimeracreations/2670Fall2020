@@ -12,6 +12,7 @@ TagManager:
   - Bomb
   - Platform
   - Torch
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX

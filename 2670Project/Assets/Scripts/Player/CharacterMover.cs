@@ -73,7 +73,7 @@ public class CharacterMover : MonoBehaviour
         {
             confused.SetActive(false);
         }
-        
+
         if (player.canControl == true)
         {
             //Constant increasing downward movement for gravity  
@@ -268,14 +268,14 @@ public class CharacterMover : MonoBehaviour
 
     private IEnumerator OnTriggerEnter(Collider other) 
     {
-        if ((other.tag == "Enemy" || other.tag == "Bomb") && player.isKnockbacked == false)
+        if ((other.tag == "Enemy" || other.tag == "Bomb" || other.tag == "EnemyAttack") && player.isKnockbacked == false)
         {
             player.isKnockbacked = true;
             player.canControl = false;
             pushDirection = new Vector3(0,0,0);
-            pushDirection = other.transform.position - transform.position;
+            pushDirection = other.gameObject.GetComponentInParent<Transform>().position - transform.position;
             pushDirection =- pushDirection.normalized;
-            pushDirection.y = 0;
+            pushDirection.y = pushDirection.y / 3;
             float i = 0;  
             gameObject.tag = "Untagged";
             while (i <= player.knockbackDuration)
