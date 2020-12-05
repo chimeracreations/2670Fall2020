@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject[] hearts;
     public PlayerData player;
     private Respawn respawn;
-    private WaitForSeconds wfs = new WaitForSeconds(2f);
+    private WaitForSeconds wfs = new WaitForSeconds(1.5f);
 
     // Start is called before the first frame update
     void Start()

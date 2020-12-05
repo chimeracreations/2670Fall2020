@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: player
   m_EditorClassIdentifier: 
   canControl: 1
-  canTorch: 0
-  canPlatform: 0
-  canJump: 0
+  canTorch: 1
+  canPlatform: 1
+  canJump: 1
   canBomb: 0
   canWall: 0
   reversedMove: 0
-  healthValue: 3
+  healthValue: 2.5
   maxHealth: 3
   energyRefillAmount: 30
   energyRefillMax: 30
@@ -51,3 +51,4 @@ MonoBehaviour:
   onPlatform: 0
   movement: {x: 0, y: -3, z: 0}
   controller: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}

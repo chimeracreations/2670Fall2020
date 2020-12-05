@@ -22,6 +22,7 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
     public GameObject heart;
     public GameObject bean;
     public Vector3 offset;
+    public bool isPhysical;
 
 
     private void Start() 
@@ -43,7 +44,7 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
 
     private void Update() 
     {
-        if (!revealed)
+        if (!revealed && !isPhysical)
         {
             for (int x = 0; x <= transform.childCount; x++)
             {
@@ -73,7 +74,17 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
                 {
                     color.a = .4f;
                 }
-                else color.a = 0.75f;
+                else
+                {
+                    if (!isPhysical)
+                    {
+                        color.a = 1f;
+                    }
+                    else
+                    {
+                        color.a = 0.75f;
+                    }
+                }
                 for (int x = 0; x <= transform.childCount; x++)
                     {
                         colorAll[x].material.color = color;
@@ -113,12 +124,15 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
 
     public IEnumerator MakeAppear()
     {
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.Lerp(GetComponent<MeshRenderer>().material.color, betaColor, 1 * Time.deltaTime);
-        for (int x = 0; x <= transform.childCount; x++)
+        if (!isPhysical)
         {
-            colorAll[x].material.color = Color.Lerp(enemy.GetComponent<MeshRenderer>().material.color, betaColor, 1 * Time.deltaTime);
+            gameObject.GetComponent<MeshRenderer>().material.color = Color.Lerp(GetComponent<MeshRenderer>().material.color, betaColor, 1 * Time.deltaTime);
+            for (int x = 0; x <= transform.childCount; x++)
+            {
+                colorAll[x].material.color = Color.Lerp(enemy.GetComponent<MeshRenderer>().material.color, betaColor, 1 * Time.deltaTime);
+            }
+            yield return wffu;
         }
-        yield return wffu;
     }
 
     public void Hide()

@@ -44,6 +44,12 @@ public class EnemyMovement : MonoBehaviour
     private void Update() 
     {
         detectNoise = player.madeNoise;
+        float dist = Vector3.Distance(character.transform.position, transform.position);
+        if (dist > 20f && wasShocked == true)
+        {
+            StartCoroutine(StopHunt());
+        }
+
         if (canHunt == false || player.canControl == false || enemyObject.activeSelf == false)
         {
             agent.speed = patrolSpeed;
@@ -121,5 +127,18 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    private IEnumerator StopHunt()
+    {   
+        exclamation.SetActive(false);
+        canHunt = false;
+        agent.isStopped = true;
+        question.SetActive(true);
+        yield return wfs;
+        question.SetActive(false);
+        agent.isStopped = false;
+        agent.ResetPath();
+        wasShocked = false;
+        detected = false;
+    }
 
 }

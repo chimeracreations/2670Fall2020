@@ -56,6 +56,7 @@ public class CharacterMover : MonoBehaviour
         tailCol = tailStink.GetComponent<Collider>();
         tailCol.enabled = false;
         confused.SetActive(false);
+        player.offset = new Vector3(0,0,0);
     }
     
     void Update()
@@ -267,7 +268,7 @@ public class CharacterMover : MonoBehaviour
             //Code that takes from above and does the work
             transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, rotateAngle, 0)); 
             player.movement = transform.TransformDirection(player.movement);
-            player.controller.Move(player.movement * Time.deltaTime);
+            player.controller.Move((player.movement * Time.deltaTime) + (player.offset * Time.deltaTime));
         }
     }
 
@@ -280,14 +281,14 @@ public class CharacterMover : MonoBehaviour
             pushDirection = new Vector3(0,0,0);
             pushDirection = other.gameObject.GetComponentInParent<Transform>().position - transform.position;
             pushDirection =- pushDirection.normalized;
-            pushDirection.y = pushDirection.y / 3;
             float i = 0;  
             gameObject.tag = "Untagged";
             while (i <= player.knockbackDuration)
             {
                 yield return wffu;
+                pushDirection.y = (pushDirection.y) - (player.gravityForce * Time.deltaTime / 4f);
                 i += (1f * Time.deltaTime);
-                player.controller.Move(pushDirection * Time.deltaTime * player.dashMoveSpeed);
+                player.controller.Move((pushDirection * Time.deltaTime * player.dashMoveSpeed) + (player.offset * Time.deltaTime));
             }
             player.canControl = true;
             color = Color.white;

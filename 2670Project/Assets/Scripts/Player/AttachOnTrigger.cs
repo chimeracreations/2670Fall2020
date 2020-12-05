@@ -6,11 +6,15 @@ public class AttachOnTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        var otherTag = other.CompareTag("Platform");
-        if (otherTag)
+        if (other.tag == "Platform")
         {
             player.onPlatform = true;
             transform.parent = other.transform;
+        }
+        else if (other.tag == "River")
+        {
+            player.onPlatform = false;
+            transform.parent = null;
         }
     }
 
@@ -19,4 +23,5 @@ public class AttachOnTrigger : MonoBehaviour
         transform.parent = null;
         player.onPlatform = false;
     }
+
 }

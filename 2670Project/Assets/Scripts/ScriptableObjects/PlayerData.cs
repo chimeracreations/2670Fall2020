@@ -44,6 +44,7 @@ public class PlayerData : ScriptableObject
     public bool onPlatform;
     [HideInInspector] public Vector3 movement;
     [HideInInspector] public CharacterController controller;
+    [HideInInspector] public Vector3 offset;
         
 
     public void SetJump(bool set)

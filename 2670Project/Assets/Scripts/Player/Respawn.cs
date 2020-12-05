@@ -49,6 +49,12 @@ public class Respawn : MonoBehaviour
 
     public void setRespawn(int value)
     {
-        i = value - 1;
+        i = value;
     }
+
+    public void CallRespawn()
+    {
+        StartCoroutine(playerRespawn());
+    }
+    
 }
