@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HeartRefillPowerup : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class HeartRefillPowerup : MonoBehaviour
     private PlayerHealth health;
     private GameObject character;
 
-    private void Start() 
+    private void OnEnable() 
     {
         character = GameObject.FindGameObjectWithTag("Player");
         health = character.GetComponent<PlayerHealth>();

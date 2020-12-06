@@ -16,15 +16,24 @@ public class TorchOnTriggerEnable : MonoBehaviour
     public int eventCount;
     [SerializeField] private UnityEvent torchEvent, torchEventTwo;
     private bool count = false;
+    public bool startLit;
 
 
 
 
     private void Start() 
     {
+        if (!startLit)
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);
+        }
+        else 
+        {
+           for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        } 
         }
     }
 
@@ -94,5 +103,10 @@ public class TorchOnTriggerEnable : MonoBehaviour
                 yield return wfs = new WaitForSeconds(1);
                 transform.GetChild(i).gameObject.SetActive(false);
             }
+    }
+
+    public void CallLightsOut()
+    {
+        StartCoroutine(LightsOut());
     }
 }

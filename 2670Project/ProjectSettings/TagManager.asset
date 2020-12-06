@@ -15,6 +15,7 @@ TagManager:
   - EnemyAttack
   - River
   - Wall
+  - BombPoint
   layers:
   - Default
   - TransparentFX
