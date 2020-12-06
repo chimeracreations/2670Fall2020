@@ -11,7 +11,7 @@ public class Respawn : MonoBehaviour
     public Renderer render2;
     public TrailRenderer tailTrail;
     private CharacterController controller;
-    private CharacterMover mover;
+    public PlayerData player;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,6 @@ public class Respawn : MonoBehaviour
         i = 0;
         wfs = new WaitForSeconds(2f);
         controller = GetComponent<CharacterController>();
-        mover = GetComponent<CharacterMover>();
     }
 
     // Update is called once per frame
@@ -33,7 +32,7 @@ public class Respawn : MonoBehaviour
 
     public IEnumerator playerRespawn()
     {
-        mover.enabled = false;
+        player.canControl = false;
         controller.enabled = false;
         render1.enabled = false;
         render2.enabled = false;
@@ -44,7 +43,7 @@ public class Respawn : MonoBehaviour
         render2.enabled = true;
         tailTrail.enabled = true;
         controller.enabled = true;
-        mover.enabled = true;
+        player.canControl = true;
     }
 
     public void setRespawn(int value)

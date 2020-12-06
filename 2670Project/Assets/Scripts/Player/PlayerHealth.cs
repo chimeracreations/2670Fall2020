@@ -83,4 +83,10 @@ public class PlayerHealth : MonoBehaviour
         yield return wfs;
         player.reversedMove = false;
     }
+
+    public void DamageHealth(float damageAmount)
+    {
+        player.healthValue -= damageAmount;
+        UpdateHearts();
+    }
 }

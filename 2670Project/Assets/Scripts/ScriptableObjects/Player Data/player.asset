@@ -17,17 +17,17 @@ MonoBehaviour:
   canPlatform: 1
   canJump: 1
   canBomb: 0
-  canWall: 0
+  canWall: 1
   reversedMove: 0
-  healthValue: 2.5
+  healthValue: 3
   maxHealth: 3
-  energyRefillAmount: 30
+  energyRefillAmount: 13.828178
   energyRefillMax: 30
   energyRefillRate: 3
   energyExtraAmount: 70
   energyExtraMax: 70
-  energyTotal: 100
-  energyDamage: 0
+  energyTotal: 83.82818
+  energyDamage: 16.077095
   gravityForce: 25
   jumpForce: 12
   maxJumpCount: 1

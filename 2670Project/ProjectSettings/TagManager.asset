@@ -14,6 +14,7 @@ TagManager:
   - Torch
   - EnemyAttack
   - River
+  - Wall
   layers:
   - Default
   - TransparentFX
