@@ -58,6 +58,12 @@ public class CharacterMover : MonoBehaviour
         confused.SetActive(false);
         player.offset = new Vector3(0,0,0);
     }
+
+    private void OnEnable()
+    {
+        player.canControl = true;
+        player.isKnockbacked = false;
+    }
     
     void Update()
     {   

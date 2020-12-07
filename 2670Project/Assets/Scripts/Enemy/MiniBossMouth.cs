@@ -13,6 +13,7 @@ public class MiniBossMouth : MonoBehaviour
         if (other.tag == "BombPoint")
         {
             callEvent?.Invoke();
+            Destroy(other.gameObject);
         }
     }
 }

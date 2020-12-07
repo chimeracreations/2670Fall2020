@@ -7,6 +7,7 @@ public class HoleBehavior : MonoBehaviour
     public PlayerData player;
     private readonly WaitForFixedUpdate wffu = new WaitForFixedUpdate();
     private float exitCount;
+    public bool playerFrozen;
    
     private IEnumerator OnTriggerEnter(Collider other)
     {
@@ -25,8 +26,7 @@ public class HoleBehavior : MonoBehaviour
                     exitCount += Time.deltaTime;
                     yield return wffu;
                 }
-                    
-                player.canControl = true; 
+                if (!playerFrozen) player.canControl = true; 
             }
             else player.canControl = true;
         }

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class AttachOnTrigger : MonoBehaviour
 {
     public PlayerData player;
+
 
     private void OnTriggerStay(Collider other)
     {
@@ -10,11 +12,13 @@ public class AttachOnTrigger : MonoBehaviour
         {
             player.onPlatform = true;
             transform.parent = other.transform;
+
         }
         else if (other.tag == "River")
         {
             player.onPlatform = false;
             transform.parent = null;
+
         }
     }
 
@@ -22,6 +26,7 @@ public class AttachOnTrigger : MonoBehaviour
     {
         transform.parent = null;
         player.onPlatform = false;
+
     }
 
 }

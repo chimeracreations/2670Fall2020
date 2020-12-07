@@ -16,6 +16,7 @@ TagManager:
   - River
   - Wall
   - BombPoint
+  - CineIgnore
   layers:
   - Default
   - TransparentFX

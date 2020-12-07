@@ -22,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     private bool wasShocked;
     private float count;
     private bool detected;
+    public bool dontSetActiveOnEnable;
     public EnemyData data;
  
 
@@ -36,7 +37,7 @@ public class EnemyMovement : MonoBehaviour
     private void OnEnable() 
     {
         canHunt = false;
-        enemyObject.SetActive(true);
+        if (!dontSetActiveOnEnable) enemyObject.SetActive(true);
         wasShocked = false;
     }
     

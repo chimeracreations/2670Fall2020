@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyKnockbackAndHealth : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
     public GameObject bean;
     public Vector3 offset;
     public bool isPhysical;
+    public float beanChance = 0.1f;
+    public float heartChance = 0.1f;
+    [SerializeField] private UnityEvent callEvent;
 
 
     private void Start() 
@@ -34,6 +38,7 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
         alphaColor = gameObject.GetComponent<MeshRenderer>().material.color;
         betaColor = gameObject.GetComponent<MeshRenderer>().material.color;
         betaColor.a = 0.75f;
+        heartChance = 1 - heartChance;
     }
 
     private void OnEnable()
@@ -95,13 +100,14 @@ public class EnemyKnockbackAndHealth : MonoBehaviour
 
             if (health <= 0f)
             {
+                callEvent?.Invoke();
                 enemy.SetActive(false);
                 var dropRandom = Random.value;
-                if (dropRandom >= 0.9f)
+                if (dropRandom >= heartChance)
                 {
                     Instantiate(heart, transform.position + offset, transform.rotation);
                 }
-                if (dropRandom <= 0.1f)
+                if (dropRandom <= beanChance)
                 {
                     Instantiate(bean, transform.position + offset, transform.rotation);
                 }
