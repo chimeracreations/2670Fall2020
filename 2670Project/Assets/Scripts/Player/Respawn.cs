@@ -6,17 +6,17 @@ public class Respawn : MonoBehaviour
 {
     public GameObject[] respawnPoint;
     private WaitForSeconds wfs;
-    private int i;
     public Renderer render1;
     public Renderer render2;
     public TrailRenderer tailTrail;
     private CharacterController controller;
     public PlayerData player;
+    public IntData respawnValue;
 
     // Start is called before the first frame update
     void Start()
     {
-        i = 0;
+        respawnValue.value = 0;
         wfs = new WaitForSeconds(2f);
         controller = GetComponent<CharacterController>();
     }
@@ -37,18 +37,19 @@ public class Respawn : MonoBehaviour
         render1.enabled = false;
         render2.enabled = false;
         tailTrail.enabled = false;
-        transform.position = respawnPoint[i].transform.position;
+        transform.position = respawnPoint[respawnValue.value].transform.position;
         yield return wfs;
         render1.enabled = true;
         render2.enabled = true;
         tailTrail.enabled = true;
         controller.enabled = true;
         player.canControl = true;
+        Time.timeScale = 1;
     }
 
     public void setRespawn(int value)
     {
-        i = value;
+        respawnValue.value = value;
     }
 
     public void CallRespawn()

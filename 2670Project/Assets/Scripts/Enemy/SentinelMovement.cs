@@ -9,7 +9,6 @@ public class SentinelMovement : MonoBehaviour
 {
     public GameObject enemy;
     private NavMeshAgent agent;
-    private GameObject character;
     public List<Vector3> patrolPoints;
     private float patrolSpeed;
     public PlayerData player;
