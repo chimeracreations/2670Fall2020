@@ -13,13 +13,12 @@ public class MiniBossBeginBattle : MonoBehaviour
     public PlayerData player;
     private Animator animator;
     private WaitForSeconds wfs;
-    [SerializeField] private UnityEvent callEvent1, callEvent2, callEvent3, callEvent4, callEvent5, callEvent6, callEvent7;
+    [SerializeField] private UnityEvent callEvent1, callEvent2, callEvent3, callEvent4, callEvent5, callEvent6, callEvent7, theEnd;
     private NavMeshAgent agent;
     private GameObject character;
     private float huntSpeed;
     private bool startMovement = false;
     public float bossHealth = 3f;
-    public GameObject theEnd;
     private bool stopEnd;
     private bool startOnce;
     public GameObject lights;
@@ -32,7 +31,6 @@ public class MiniBossBeginBattle : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         character = GameObject.FindWithTag("Player");
         huntSpeed = 4f;
-        theEnd.SetActive(false);
         stopEnd = false;
         startOnce = false;
         lights.SetActive(false);
@@ -125,7 +123,7 @@ public class MiniBossBeginBattle : MonoBehaviour
         callEvent5.Invoke();
         yield return wfs = new WaitForSeconds(time);
         yield return wfs = new WaitForSeconds(time);
-        theEnd.SetActive(true);
+        theEnd?.Invoke();
         Time.timeScale = 0;
     }
 

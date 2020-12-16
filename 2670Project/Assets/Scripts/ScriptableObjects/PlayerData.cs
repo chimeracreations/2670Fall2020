@@ -14,6 +14,8 @@ public class PlayerData : ScriptableObject
     public bool reversedMove;
     public float healthValue;
     public int maxHealth; 
+    public int lives;
+    public int ghostKills;
     public float energyRefillAmount;
     public float energyRefillMax;
     public float energyRefillRate;

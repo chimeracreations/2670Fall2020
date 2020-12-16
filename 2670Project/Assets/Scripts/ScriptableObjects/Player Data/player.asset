@@ -21,6 +21,8 @@ MonoBehaviour:
   reversedMove: 0
   healthValue: 3
   maxHealth: 3
+  lives: 8
+  ghostKills: 0
   energyRefillAmount: 30
   energyRefillMax: 30
   energyRefillRate: 3

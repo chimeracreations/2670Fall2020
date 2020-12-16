@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
     [SerializeField] private UnityEvent callEvent;
     public IntData respawnValue;
     public IntData respawnUnlock;
+    public PlayerData player;
     public GameObject title;
     public GameObject background;
     public GameObject play;
@@ -25,6 +26,7 @@ public class Menu : MonoBehaviour
     public GameObject spawn6;
     public GameObject spawn7;
     public GameObject spawn8;
+    public GameObject gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -36,9 +38,14 @@ public class Menu : MonoBehaviour
 
     private void Update() 
     {
-         if (Input.GetKeyDown(KeyCode.Escape) && !isLoaded)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isLoaded)
         {
             LoadMenu();
+        }
+
+        if (player.lives == 0)
+        {
+            GameOver();
         }
     }
 
@@ -116,6 +123,15 @@ public class Menu : MonoBehaviour
         callEvent?.Invoke();
         isLoaded = false;
         PlayGame();
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        background.SetActive(true);
+        yes.SetActive(true);
+        isLoaded = true;
+        gameOver.SetActive(true);
     }
 
 }

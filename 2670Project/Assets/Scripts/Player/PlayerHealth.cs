@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public GameObject[] hearts;
+    public Text lives;
     public PlayerData player;
     private Respawn respawn;
     private WaitForSeconds wfs = new WaitForSeconds(1.5f);
@@ -47,6 +48,8 @@ public class PlayerHealth : MonoBehaviour
         {
             StartCoroutine(respawn.playerRespawn());
             player.healthValue = 3;
+            player.lives -= 1;
+            lives.text = player.lives.ToString();
         }
 
         for (int i = 0; i < hearts.Length; i++)
