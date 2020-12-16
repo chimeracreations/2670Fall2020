@@ -157,6 +157,24 @@ MonoBehaviour:
   heart: {fileID: 1140104133924540200, guid: 5f7c641aa994b1d44b491932ae5dc249, type: 3}
   bean: {fileID: 6770292169647646549, guid: aedfc706871f77e4f81b50284f1ab109, type: 3}
   offset: {x: 0, y: -1, z: 0}
+  isPhysical: 0
+  beanChance: 0.1
+  heartChance: 0.1
+  callEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6928308202055810401}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopAllCoroutines
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3227171627193685554
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +613,7 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: f9d149e205b24844aaac3752a9f7eb99, type: 2}
   exclamation: {fileID: 4305745337374582222}
   question: {fileID: 9042260433248563150}
+  dontSetActiveOnEnable: 0
   data: {fileID: 11400000, guid: a4a8e1d03d2788d4fb896e5a691b5a46, type: 2}
 --- !u!1 &9042260433248563150
 GameObject:
